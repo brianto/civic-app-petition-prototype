@@ -1,4 +1,4 @@
-class PetitionController < ApplicationController
+class PetitionsController < ApplicationController
   #
   def index
     @petitions=Petition.first

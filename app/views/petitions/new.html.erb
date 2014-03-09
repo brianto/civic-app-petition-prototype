@@ -1,0 +1,9 @@
+<%= form_for @petition do |p| %>
+  <%= p.label :title %>:
+  <%= p.text_field :title %><br />
+
+  <%= p.label :statement %>:
+  <%= p.text_area :statement %><br />
+
+  <%= p.submit %>
+<% end %>
