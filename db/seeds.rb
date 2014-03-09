@@ -5,3 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+p = Petition.create :title => "Bro Code #2345207", :statement => "No fucking bitches before the hackathon"
+r = Resident.create :name => "DrunkMcAndres"
+s = Signature.create
+
+s.petition = p
+s.resident = r
+s.save

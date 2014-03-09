@@ -4,6 +4,7 @@ CivicAppPetitionPrototype::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
     root 'petition#index'
+    resources :petitions
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
