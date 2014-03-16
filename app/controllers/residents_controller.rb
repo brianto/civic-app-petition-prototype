@@ -7,10 +7,13 @@ class ResidentsController < ApplicationController
   def create
     @resident = Resident.new resident_params
     
-    if @resident.save! && @resident.user.save!
-      redirect_to petitions_path
-    else
-      raise "hella funny"
+    begin
+      @resident.save!
+      @resident.user.save!
+      
+      redirect_to resident_path @resident
+    rescue Exception => e
+      redirect_to new_resident_path
     end
   end
   

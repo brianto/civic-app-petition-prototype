@@ -26,6 +26,7 @@ gem 'turbolinks'
 
 # Auth gem
 gem 'authlogic'
+gem 'scrypt' # because authlogic needs it? shouldn't that be a dependency, then?
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
