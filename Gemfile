@@ -48,4 +48,7 @@ end
 # gem 'debugger', group: [:development, :test]
 
 # Use thejs enviorment for linux
-gem 'therubyracer'
+if not RbConfig::CONFIG["host_os"] =~ /mswin|mingw/
+  gem 'therubyracer', :platforms => [:ruby]
+end
+
