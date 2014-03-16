@@ -21,3 +21,7 @@ s.save
 s1.petition = p1
 s1.resident = r1
 s1.save
+
+constant = Constants.create \
+  :site_title => "Everyday City People",
+  :goal => 1000

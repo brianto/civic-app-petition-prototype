@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140316173519) do
+ActiveRecord::Schema.define(version: 20140316174405) do
+
+  create_table "constants", force: true do |t|
+    t.string   "site_title"
+    t.integer  "goal"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "petitions", force: true do |t|
     t.text    "statement"
