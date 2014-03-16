@@ -10,6 +10,14 @@ p = Petition.create :title => "Bro Code #2345207", :statement => "No fucking bit
 r = Resident.create :name => "DrunkMcAndres"
 s = Signature.create
 
+p1 = Petition.create :title => "Sunglasses", :statement => "You know if you leave your sunglasses at your bro's house, your bro's penis gets to wear them!"
+r1 = Resident.create :name => "DrunkMcAndres"
+s1 = Signature.create
+
 s.petition = p
 s.resident = r
 s.save
+
+s1.petition = p1
+s1.resident = r1
+s1.save

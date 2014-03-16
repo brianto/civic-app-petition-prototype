@@ -11,12 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140309190838) do
+ActiveRecord::Schema.define(version: 20140316173519) do
 
   create_table "petitions", force: true do |t|
     t.text    "statement"
     t.integer "resident_id"
     t.string  "title"
+    t.integer "goal"
   end
 
   create_table "residents", force: true do |t|

@@ -1,17 +1,10 @@
 <!-- Example row of columns -->
       <div class="row">
+      	<% @petitions.each do |p| %>
         <div class="col-md-4">
-          <h2><%= @petitions.title %></h2>
-          <p><%= @petitions.statement %> Signed by: <%= @petitions.signatures.first.resident.name %></p>
+          <h2><%= p.title %></h2>
+          <p><%= p.statement %></p>
           <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
         </div>
-        <div class="col-md-4">
-          <h2>Petition 2</h2>
-          <p>Petition statement</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-       </div>
-        <div class="col-md-4">
-          <h2>Petition 3</h2>
-          <p>Petition statement</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div>
+
+       <% end %>
