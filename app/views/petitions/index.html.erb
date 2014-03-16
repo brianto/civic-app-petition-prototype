@@ -1,10 +1,14 @@
 <!-- Example row of columns -->
-      <div class="row">
-      	<% @petitions.each do |p| %>
-        <div class="col-md-4">
-          <h2><%= p.title %></h2>
-          <p><%= p.statement %></p>
-          <p><%= link_to "View details &raquo".html_safe, petition_path(p), :class => "btn btn-default"%></p>
-        </div>
+<% content_for :top do %>
+  <%= render :partial => "partials/big_banner"%>
+<% end %>
 
-       <% end %>
+<div class="row">
+  <% @petitions.each do |p| %>
+    <div class="col-md-4">
+      <h2><%= p.title %></h2>
+      <p><%= p.statement %></p>
+      <p><%= link_to "View details &raquo;".html_safe, petition_path(p), :class => "btn btn-default"%></p>
+    </div>
+  <% end %>
+</div>
