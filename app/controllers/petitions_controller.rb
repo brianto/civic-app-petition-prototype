@@ -16,6 +16,7 @@ class PetitionsController < ApplicationController
     if @petition
       # success
       @petition.save
+      redirect_to petition_url @petition
     else
       # error handling
     end
