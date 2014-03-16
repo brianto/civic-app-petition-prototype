@@ -1,9 +1,19 @@
-<%= form_for @petition do |p| %>
-  <%= p.label :title %>:
-  <%= p.text_field :title %><br />
-
-  <%= p.label :statement %>:
-  <%= p.text_area :statement %><br />
-
-  <%= p.submit %>
+<%= form_for @petition, :html => {:role => "form", :class => "form-horizontal"} do |p| %>
+  <div class="form-group">
+  	<%= p.label :title, :class=> "col-sm-2 control-label" %>
+  	<div class="col-sm-6">
+  		<%= p.text_field :title, :class => "form-control", :placeholder => "Petiton Title"%>
+  	</div>
+  </div>
+  <div class="form-group">
+  	<%= p.label :statement, :class => "col-sm-2 control-label"%>
+  	<div class="col-sm-6">
+  		<%= p.text_area :statement, :class => "form-control", :placeholder => "Mission Statement", :rows => "6"%>
+  	</div>
+  </div>
+  <div class="form-group">
+	<div class="col-sm-offset-2 col-sm-10">
+  		<%= p.submit :class => "btn btn-default" %>
+  	</div>
+  </div>
 <% end %>
