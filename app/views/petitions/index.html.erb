@@ -4,7 +4,7 @@
         <div class="col-md-4">
           <h2><%= p.title %></h2>
           <p><%= p.statement %></p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+          <p><%= link_to "View details &raquo".html_safe, petition_path(p), :class => "btn btn-default"%></p>
         </div>
 
        <% end %>

@@ -6,6 +6,10 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+constant = Constants.create \
+  :site_title => "Everyday City People",
+  :goal => 1000
+
 p = Petition.create :title => "Bro Code #2345207", :statement => "No fucking bitches before the hackathon"
 r = Resident.create :name => "DrunkMcAndres"
 s = Signature.create
@@ -21,7 +25,3 @@ s.save
 s1.petition = p1
 s1.resident = r1
 s1.save
-
-constant = Constants.create \
-  :site_title => "Everyday City People",
-  :goal => 1000

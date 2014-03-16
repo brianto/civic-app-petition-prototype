@@ -37,7 +37,7 @@
       <div class="container">
         <h1><%= @constants.site_title %></h1>
         <p>Project description</p>
-        <p><a class="btn btn-primary btn-lg" href="petitions/new"role="button">Create Petition</a></p>
+        <p><%= link_to "Create Petition", new_petition_path, :class => "btn btn-primary btn-lg" %></p>
       </div>
     </div>
 
