@@ -1,17 +1,26 @@
-<%= form_for @resident do |resident| %>
-	<%= resident.label :name %>
-	<%= resident.text_field :name %>
+<%= form_for @resident, :html => { :class => "form", :role => "form" } do |resident| %>
+	<div class="form-group">
+		<%= resident.label :name %>
+		<%= resident.text_field :name, :class => "form-control" %>
+	</div>
 	
 	<%= resident.fields_for :user do |user| %>
-		<%= user.label :email %>
-		<%= user.text_field :email %>
+		<div class="form-group">
+			<%= user.label :email %>
+			<%= user.text_field :email, :class => "form-control" %>
+		</div>
 		
-		<%= user.label :password %>
-		<%= user.text_field :password %>
-	
-		<%= user.label :password_confirmation %>
-		<%= user.text_field :password_confirmation %>
+		<div class="form-group">
+			<%= user.label :password %>
+			<%= user.password_field :password, :class => "form-control" %>
+		</div>
+		
+		<div class="form-group">
+			<%= user.label :password_confirmation %>
+			<%= user.password_field :password_confirmation, :class => "form-control" %>
+		</div>
+		
 	<% end %>
 	
-	<%= submit_tag "Mutherfucking GO!!" %>
+	<%= submit_tag "Mutherfucking GO!!", :class => "btn btn-success" %>
 <% end %>
