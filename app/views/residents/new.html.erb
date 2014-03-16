@@ -1,0 +1,17 @@
+<%= form_for @resident do |resident| %>
+	<%= resident.label :name %>
+	<%= resident.text_field :name %>
+	
+	<%= resident.fields_for :user do |user| %>
+		<%= user.label :email %>
+		<%= user.text_field :email %>
+		
+		<%= user.label :password %>
+		<%= user.text_field :password %>
+	
+		<%= user.label :password_confirmation %>
+		<%= user.text_field :password_confirmation %>
+	<% end %>
+	
+	<%= submit_tag "Mutherfucking GO!!" %>
+<% end %>

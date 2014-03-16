@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140316174405) do
+ActiveRecord::Schema.define(version: 20140316184315) do
 
   create_table "constants", force: true do |t|
     t.string   "site_title"
@@ -27,6 +27,11 @@ ActiveRecord::Schema.define(version: 20140316174405) do
     t.integer "goal"
   end
 
+  create_table "politicians", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "residents", force: true do |t|
     t.string "name"
   end
@@ -34,6 +39,22 @@ ActiveRecord::Schema.define(version: 20140316174405) do
   create_table "signatures", force: true do |t|
     t.integer "resident_id"
     t.integer "petition_id"
+  end
+
+  create_table "sysadmins", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "email"
+    t.integer  "role_id"
+    t.string   "role_type"
+    t.string   "crypted_password"
+    t.string   "password_salt"
+    t.string   "persistence_token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
