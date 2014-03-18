@@ -15,4 +15,8 @@
   </div>
   
   <%= user.submit "Sign In", :class => "btn btn-success" %>
+  
+  <span data-no-turbolink>
+    <%= link_to "Sign Up", new_resident_path, :class => "btn btn-primary" %>
+  </span>
 <% end %>
