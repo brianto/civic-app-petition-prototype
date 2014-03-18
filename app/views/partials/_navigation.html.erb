@@ -10,15 +10,11 @@
       <a class="navbar-brand" href="/"><%= @constants.site_title %></a>
     </div>
     <div class="navbar-collapse collapse">
-      <form class="navbar-form navbar-right" role="form">
-        <div class="form-group">
-          <input type="text" placeholder="Email" class="form-control">
-        </div>
-        <div class="form-group">
-          <input type="password" placeholder="Password" class="form-control">
-        </div>
-        <button type="submit" class="btn btn-success">Sign in</button>
-      </form>
+      <% if current_user %>
+        <%= render :partial => "partials/logged_in" %>
+      <% else %>
+        <%= render :partial => "partials/login" %>      
+      <% end %>
     </div>
   </div>
 </div>

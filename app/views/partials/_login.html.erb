@@ -1,0 +1,28 @@
+<%= form_for :user_session,
+    :url => {
+      :controller => "user_session",
+      :action => :create
+    },
+    :html => {
+      :class => "navbar-form navbar-right",
+      :role => "form" } do |user| %>
+  <div class="form-group">
+    <%= user.email_field :email, :class => "form-control", :placeholder => "e-mail" %>
+  </div>
+
+  <div class="form-group">
+    <%= user.password_field :password, :class => "form-control", :placeholder => "password" %>
+  </div>
+  
+  <%= user.submit "Sign In", :class => "btn btn-success" %>
+<% end %>
+<!-- 
+<form class="navbar-form navbar-right" role="form">
+  <div class="form-group">
+    <input type="text" placeholder="Email" class="form-control">
+  </div>
+  <div class="form-group">
+    <input type="password" placeholder="Password" class="form-control">
+  </div>
+  <button type="submit" class="btn btn-success">Sign in</button>
+</form> -->
