@@ -23,6 +23,12 @@
           </div>
           
           <%= login.submit "Sign In", :class => "btn btn-success" %>
+          
+          or
+          
+          <span data-no-turbolink>
+            <%= link_to "Sign Up", new_resident_path, :class => "btn btn-primary" %>
+          </span>
         <% end %>
       </div>
     </div>

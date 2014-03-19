@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   
   before_action do
     @constants = Constants.first
+    @current_user = current_user
   end
   
   helper_method :current_user

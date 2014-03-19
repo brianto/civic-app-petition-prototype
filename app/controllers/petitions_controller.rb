@@ -5,6 +5,10 @@ class PetitionsController < ApplicationController
   end
   
   def new
+    if @current_user.nil? then 
+      redirect_to login_path
+    end
+    
     @petition=Petition.new
   end
   
