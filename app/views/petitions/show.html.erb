@@ -1,9 +1,15 @@
-<div>
-	<button class="pull-right">Sign</button>
+<div class="jumbotron">
+	<a class="pull-right btn btn-primary visible-md visible-lg" role="button" id="sign_petition">Sign</a>
 	<h1><%= @petition.title %></h1>
 	<h2><%= @petition.statement%></h2>
-	<h3>Goal: <%= @petition.goal%></h3>
-	<button>Sign</button>
+</div>
+<div class="row">
+	<div class="col-lg-6">
+		<h3>Current Signatures: 0 </h3>
+	</div>
+	<div class="col-lg-6">
+		<h3>Goal: <%= @petition.goal%></h3>
+	</div>
 </div>
 
 <div class="progress progress-striped active">
@@ -11,3 +17,17 @@
     <span class="sr-only">45% Complete</span>
   </div>
 </div>
+<p>People that have signed this petition:</p>
+<ul>
+	<li>Test 1</li>
+	<li>Test 2</li>
+</ul>
+<br />
+<div class="row">
+	<div class="col-md-2">
+		<a class="btn btn-primary btn-lg btn-block" role="button" id="sign_petition">Sign</a>
+	</div>
+</div>
+
+
+
