@@ -3,5 +3,17 @@
 	
 	<h2> Welcome, <%= @user.name %> </h2>
 	<p>Do intro to the site here!</p>
+	<h2>My Petitions</h2>
+	<% if @user.petitions.length == 0 %>
+	<p>You haven't created any petitions yet, get started <%= link_to "here.", new_petition_path, :class => "btn btn-primary" %></p>
+	<% else %>
+	<ul>
+		<% @user.petitions.each do |petition| %>
+		
+		<li><%= link_to petition.title, petition_path(petition) %></li>
+		
+		<% end %>
+	</ul>
+	<% end %>
 	
 </div>

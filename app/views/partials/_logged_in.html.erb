@@ -1,6 +1,6 @@
 <div class="pull-right">
   <span class="navbar-text">
-    Welcome <%= current_user.email %>
+    Welcome, <%= link_to current_user.role.name, user_path(current_user), :class => "text-muted" %>
   </span>
   
   <%= link_to "Sign Out", logout_path, :class => "btn btn-default navbar-btn" %>  

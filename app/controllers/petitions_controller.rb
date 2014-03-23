@@ -16,7 +16,7 @@ class PetitionsController < ApplicationController
     
     title = params[:petition][:title]
     statement = params[:petition][:statement]
-    @petition = Petition.create :title => title, :statement => statement, :goal => @constants.goal
+    @petition = Petition.create :title => title, :statement => statement, :goal => @constants.goal, :resident => @current_user.role
     if @petition
       # success
       @petition.save
