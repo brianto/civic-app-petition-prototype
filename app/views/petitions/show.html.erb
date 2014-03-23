@@ -43,7 +43,12 @@
 <script>
 	$(".sign_petition").on("click", function(){
 		// Have this refresh, can't figure it out without internet
-		$.post("/petitions/3/sign")
+		p = $.post("<%= @petition.id %>/sign");// Yikes this is ugly!
+		
+		p.done(function(e){
+			document.location = document.URL; //Reload, the ugly way
+		});
+		
 	});
 </script>
 

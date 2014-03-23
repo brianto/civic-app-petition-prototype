@@ -30,7 +30,7 @@ class PetitionsController < ApplicationController
     @petition = Petition.find(params[:id])
     @signatures = @petition.getSuporters
     @count = @signatures.length
-    @show_sign = (not @current_user.nil?)
+    @show_sign = (not @current_user.nil? and not @current_user.role.signedPetition(@petition))
   end
   
   def sign
