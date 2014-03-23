@@ -5,6 +5,14 @@ class Petition < ActiveRecord::Base
   
   before_create :setGoal
   
+  def getSuporters
+    list = []
+    self.signatures.each do |signature|
+      list << signature
+    end
+    list
+  end
+  
   private
   def setGoal
     goal = Constants.first.goal

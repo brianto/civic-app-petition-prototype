@@ -28,5 +28,7 @@ class PetitionsController < ApplicationController
   
   def show
     @petition = Petition.find(params[:id])
+    @signatures = @petition.getSuporters
+    @count = @signatures.length
   end
 end
