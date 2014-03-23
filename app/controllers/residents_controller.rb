@@ -5,6 +5,10 @@ class ResidentsController < ApplicationController
   end
   
   def show
+    if @current_user.nil? then 
+      redirect_to login_path
+    end
+    
     @user = Resident.find(params[:id])
   end
   

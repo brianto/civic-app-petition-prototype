@@ -9,7 +9,7 @@ class PetitionsController < ApplicationController
       redirect_to login_path
     end
     
-    @petition=Petition.new
+    @petition = Petition.new
   end
   
   def create
@@ -30,5 +30,18 @@ class PetitionsController < ApplicationController
     @petition = Petition.find(params[:id])
     @signatures = @petition.getSuporters
     @count = @signatures.length
+    @show_sign = (not @current_user.nil?)
+  end
+  
+  def sign
+    petition = Petition.find(params[:id])
+    
+    sig = Signature.create
+    sig.petition = petition
+    sig.resident = @current_user.role
+    
+    sig.save
+    
+    redirect_to petition_url petition
   end
 end

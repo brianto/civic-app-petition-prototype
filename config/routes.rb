@@ -8,4 +8,6 @@ CivicAppPetitionPrototype::Application.routes.draw do
   get "/login" => "user_session#new"
   post "/login" => "user_session#create"
   get "/logout" => "user_session#destroy"
+  
+  post "/petitions/:id/sign" => "petitions#sign"
 end

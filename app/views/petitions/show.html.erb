@@ -1,5 +1,7 @@
 <div class="jumbotron">
-	<a class="pull-right btn btn-primary visible-md visible-lg" role="button" id="sign_petition">Sign</a>
+	<%if @show_sign%>
+	<a class="pull-right btn btn-primary visible-md visible-lg sign_petition" role="button">Sign</a>
+	<%end%>
 	<h1><%= @petition.title %></h1>
 	<h2><%= @petition.statement%></h2>
 </div>
@@ -30,11 +32,19 @@
 <%end%>
 </div>
 <br />
+<%if @show_sign %>
 <div class="row">
 	<div class="col-md-2">
-		<a class="btn btn-primary btn-lg btn-block" role="button" id="sign_petition">Sign</a>
+		<a class="btn btn-primary btn-lg btn-block sign_petition" role="button">Sign</a>
 	</div>
 </div>
+<%end%>
 
+<script>
+	$(".sign_petition").on("click", function(){
+		// Have this refresh, can't figure it out without internet
+		$.post("/petitions/3/sign")
+	});
+</script>
 
 
