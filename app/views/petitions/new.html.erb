@@ -1,9 +1,5 @@
 
-<!-- Get rid of these, using css -->
-<br/>
-<br/>
-<br/>
-<%= form_for @petition, :html => {:role => "form", :class => "form-horizontal"} do |p| %>
+<%= form_for @petition, :html => {:role => "form", :class => "form-horizontal", :id => "new_petition_form"} do |p| %>
   <div class="form-group">
   	<%= p.label :title, :class=> "col-sm-2 control-label" %>
   	<div class="col-sm-6">
