@@ -50,7 +50,25 @@ class PetitionsController < ApplicationController
   end
   
   def find
+    # Get the search string
+    search_string = params[:SearchString]
     
+    ret = []
+    
+    # Search through titles
+    petitions = Petition.all
+    
+    petitions.each do |petition|
+      if search_string.in?(petition.title)
+        ret << petition
+      elsif search_string.in?(petition.statement)
+        ret << petition
+      end
+    end
+    
+    @petitions = ret
+    
+    render :partial => "partials/search_results"
   end
   
 end

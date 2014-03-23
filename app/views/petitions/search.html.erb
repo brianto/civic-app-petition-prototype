@@ -1,10 +1,36 @@
 <div class="container">
-	<form class="single_form form-horizontal">
+	<form class="single_form form-horizontal" id="search_form">
 		<div class="form-group">
-		  	<label class="col-sm-1 control-label">Search</label>
-		  	<div class="col-sm-6">
-		  		<input type="text" class="form-control" placeholder="Search for a petition..." />
+			<div class="col-lg-2"></div>
+		  	<div class="col-lg-6">
+		  		<input id="search_query" type="text" class="form-control" placeholder="Search for a petition..." />
 		  	</div>
+		  	<button type="submit" class="btn btn-primary col-lg-1">Search</button>
 	  	</div>
 	</form>
+	
+	<div id="search_results">
+		<ul id="search_list">
+			
+		</ul>
+	</div>
+	
 </div>
+
+<script>
+	$("#search_form").on("submit", function(){
+  		var searchString = $("#search_query").val();
+  		
+	 	console.log(searchString);
+	 	
+	 	post = $.post("/petitions/find", {"SearchString": searchString});
+	 	
+	 	post.done(function(data){
+	 		$("#search_list").html(data);
+	 	});
+	 	
+	 	
+		return false; //Don't reload the page
+	});
+
+</script>

@@ -1,0 +1,6 @@
+<p>Found <%= @petitions.length %> petition(s) </p>
+
+<!-- TODO: Improve style-->
+<% @petitions.each do |petition|%>
+	<li><%= link_to petition.title, petition%></li>
+<% end%>
