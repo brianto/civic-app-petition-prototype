@@ -4,6 +4,7 @@ class Petition < ActiveRecord::Base
   
   
   before_create :setGoal
+  after_create :signByOwner
   
   def getSuporters
     list = []
@@ -18,4 +19,12 @@ class Petition < ActiveRecord::Base
     goal = Constants.first.goal
     self.goal = goal
   end
+  
+  def signByOwner
+    sig = Signature.new
+    sig.resident = self.resident
+    sig.petition = self
+    sig.save 
+  end
+  
 end
