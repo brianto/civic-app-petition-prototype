@@ -8,7 +8,7 @@
 
 constant = Constants.create \
   :site_title => "Everyday City People",
-  :goal => 1000
+  :goal => 10
 
 p = Petition.create :title => "Bro Code #2345207", :statement => "No fucking bitches before the hackathon"
 r = Resident.create :name => "DrunkMcAndres"
@@ -18,6 +18,12 @@ p1 = Petition.create :title => "Sunglasses", :statement => "You know if you leav
 r1 = Resident.create :name => "DrunkMcAndres"
 s1 = Signature.create
 
+p2 = Petition.create :title => "Counting", :statement => "If you don't know how to count, just say it..."
+r2 = Resident.create :name => "DrewBitchboyFilipski"
+s2 = Signature.create
+s3 = Signature.create
+
+
 s.petition = p
 s.resident = r
 s.save
@@ -25,3 +31,11 @@ s.save
 s1.petition = p1
 s1.resident = r1
 s1.save
+
+s2.petition = p2
+s2.resident = r2
+s2.save
+
+s3.petition = p2
+s3.resident = r1
+s3.save
