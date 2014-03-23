@@ -1,3 +1,4 @@
+<!-- Start petition description -->
 <div class="jumbotron">
 	<%if @show_sign%>
 	<a class="pull-right btn btn-primary visible-md visible-lg sign_petition" role="button">Sign</a>
@@ -5,6 +6,9 @@
 	<h1><%= @petition.title %></h1>
 	<h2><%= @petition.statement%></h2>
 </div>
+<!-- End Petition Description-->
+
+<!-- Start signatures -->
 <div class="row">
 	<div class="col-lg-6">
 		<h3>Current Signatures: <%= @count %> </h3>
@@ -13,7 +17,7 @@
 		<h3>Goal: <%= @petition.goal%></h3>
 	</div>
 </div>
-
+<!-- End signatures -->
 
 <div class="progress progress-striped active">
   <div class="progress-bar"  role="progressbar" aria-valuenow="<%= @count %>" aria-valuemin="0" aria-valuemax="<%= @petition.goal%>" style="width: <%= ((@count * 1.0) / @petition.goal) * 100 %>%">
