@@ -44,4 +44,13 @@ class PetitionsController < ApplicationController
     
     redirect_to petition_url petition
   end
+  
+  def search
+    
+  end
+  
+  def find
+    
+  end
+  
 end

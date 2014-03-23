@@ -10,4 +10,9 @@ CivicAppPetitionPrototype::Application.routes.draw do
   get "/logout" => "user_session#destroy"
   
   post "/petitions/:id/sign" => "petitions#sign"
+  
+  get "/search" => "petitions#search"
+  get "/petitions/search" => "petitions#search"
+  
+  post "/petitions/find" => "petitions#find"
 end
