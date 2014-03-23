@@ -4,6 +4,10 @@ class ResidentsController < ApplicationController
     @resident = Resident.new :user => @user
   end
   
+  def show
+    @user = Resident.find(params[:id])
+  end
+  
   def create
     @resident = Resident.new resident_params
     
