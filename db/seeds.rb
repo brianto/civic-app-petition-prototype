@@ -10,32 +10,40 @@ constant = Constants.create \
   :site_title => "Everyday City People",
   :goal => 10
 
-p = Petition.create :title => "Bro Code #2345207", :statement => "No fucking bitches before the hackathon"
-r = Resident.create :name => "DrunkMcAndres"
-s = Signature.create
+andres = Resident.create :name => "DrunkMcAndres"
+andrew = Resident.create :name => "DrewBitchboyFilipski"
 
-p1 = Petition.create :title => "Sunglasses", :statement => "You know if you leave your sunglasses at your bro's house, your bro's penis gets to wear them!"
-r1 = Resident.create :name => "DrunkMcAndres"
-s1 = Signature.create
+User.create \
+  :email => "andres@andres.com",
+  :password => "Andres1",
+  :password_confirmation => "Andres1",
+  :role => andres
 
-p2 = Petition.create :title => "Counting", :statement => "If you don't know how to count, just say it..."
-r2 = Resident.create :name => "DrewBitchboyFilipski"
-s2 = Signature.create
-s3 = Signature.create
+User.create \
+  :email => "andrew@andrew.com",
+  :password => "Andrew1",
+  :password_confirmation => "Andrew1",
+  :role => andrew
 
+brocode = Petition.create \
+  :title => "Bro Code #2345207",
+  :statement => "No fucking bitches before the hackathon",
+  :resident => andres
 
-s.petition = p
-s.resident = r
-s.save
+sunglasses = Petition.create \
+  :title => "Sunglasses",
+  :statement => "You know if you leave your sunglasses at your bro's house, your bro's penis gets to wear them!",
+  :resident => andres
 
-s1.petition = p1
-s1.resident = r1
-s1.save
+counting = Petition.create \
+  :title => "Counting",
+  :statement => "If you don't know how to count, just say it...",
+  :resident => andrew
 
-s2.petition = p2
-s2.resident = r2
-s2.save
+Signature.create \
+  :petition => sunglasses,
+  :resident => andrew
 
-s3.petition = p2
-s3.resident = r1
-s3.save
+Signature.create \
+  :petition => counting,
+  :resident => andres
