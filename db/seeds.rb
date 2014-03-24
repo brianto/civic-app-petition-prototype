@@ -9,9 +9,13 @@
 constant = Constants.create \
   :site_title => "Everyday City People",
   :goal => 10
-
+  
 andres = Resident.create :name => "DrunkMcAndres"
 andrew = Resident.create :name => "DrewBitchboyFilipski"
+
+brian = Politician.create :name => "SimplyBrian"
+
+admin = Sysadmin.create
 
 User.create \
   :email => "andres@andres.com",
@@ -24,6 +28,18 @@ User.create \
   :password => "Andrew1",
   :password_confirmation => "Andrew1",
   :role => andrew
+
+User.create \
+  :email => "brian@brian.com",
+  :password => "Brian1",
+  :password_confirmation => "Brian1",
+  :role => brian
+
+User.create \
+  :email => "admin@admin.com",
+  :password => "Admin1",
+  :password_confirmation => "Admin1",
+  :role => admin
 
 brocode = Petition.create \
   :title => "Bro Code #2345207",

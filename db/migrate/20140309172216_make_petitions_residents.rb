@@ -3,16 +3,16 @@ class MakePetitionsResidents < ActiveRecord::Migration
     create_table :petitions do |t|
       t.text :statement
       t.references :resident
-      t.timestamp
+      t.timestamps
     end
     create_table :residents do |t|
       t.string :name
-      t.timestamp
+      t.timestamps
     end
     create_table :signatures do |t|
       t.references :resident
       t.references :petition
-      t.timestamp
+      t.timestamps
     end
   end
 end
