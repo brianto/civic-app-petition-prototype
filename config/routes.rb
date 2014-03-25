@@ -9,6 +9,9 @@ CivicAppPetitionPrototype::Application.routes.draw do
   post "/login" => "user_session#create"
   get "/logout" => "user_session#destroy"
   
+  # AdminController
+  get "/admin" => "admin#index"
+  
   post "/petitions/:id/sign" => "petitions#sign"
   
   get "/search" => "petitions#search"
