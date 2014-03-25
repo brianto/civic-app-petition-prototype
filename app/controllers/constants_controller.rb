@@ -1,5 +1,5 @@
 class ConstantsController < ApplicationController
-  before_filter :is_admin
+  before_filter :ensure_admin
 
   def edit
     
@@ -12,12 +12,6 @@ class ConstantsController < ApplicationController
   end
   
   private
-  
-  def is_admin
-    unless current_user && current_user.role.is_a?(Sysadmin) then
-      render :status => :forbidden
-    end
-  end
   
   def constant_params
     params.require(:constants).permit(:goal, :site_title)
