@@ -1,0 +1,21 @@
+<%= form_for :constants,
+    :url => {
+      :action => :update
+    },
+    :html => {
+      :class => "form",
+      :role => "form"
+    } do |const| %>
+
+  <div class="form-group">
+    <%= const.label :goal %>
+    <%= const.text_field :goal, :class => "form-control" %>
+  </div>
+  
+  <div class="form-group">
+    <%= const.label :site_title %>
+    <%= const.text_field :site_title, :class => "form-control" %>
+  </div>     
+
+  <%= const.submit "Update", :class => "btn btn-success" %>
+<% end %>

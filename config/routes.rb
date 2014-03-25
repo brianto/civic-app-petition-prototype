@@ -5,6 +5,11 @@ CivicAppPetitionPrototype::Application.routes.draw do
   resources :residents
   resources :users
   
+  # Constants
+  get "/constants/edit" => "constants#edit"
+  post "/constants" => "constants#update"
+  
+  # Login
   get "/login" => "user_session#new"
   post "/login" => "user_session#create"
   get "/logout" => "user_session#destroy"

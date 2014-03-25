@@ -1,16 +1,14 @@
-class AdminController < ApplicationController
+class ConstantsController < ApplicationController
   before_filter :is_admin
-  
-  def index
-    
-  end
-  
-  def configure
+
+  def edit
     
   end
   
   def update
-    
+    @constants.update constant_params
+
+    redirect_to admin_path    
   end
   
   private
@@ -21,7 +19,7 @@ class AdminController < ApplicationController
     end
   end
   
-  def update_params
+  def constant_params
     params.require(:constants).permit(:goal, :site_title)
   end
 end
