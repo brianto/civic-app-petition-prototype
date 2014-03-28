@@ -15,7 +15,12 @@
   <div class="form-group">
     <%= const.label :site_title %>
     <%= const.text_field :site_title, :class => "form-control" %>
-  </div>     
+  </div>
+  
+  <div class="form-group">
+    <%= const.label :site_description %>
+    <%= const.text_field :site_description, :class => "form-control" %>
+  </div>       
 
   <%= const.submit "Update", :class => "btn btn-success" %>
 <% end %>

@@ -10,7 +10,10 @@ civic.controller "ResidentFormController", ($scope) ->
   $scope.validation =
     allValid: ->
       _.all [
-        this.email.isValid()
+        this.name.isValid(),
+        this.email.isValid(),
+        this.password.isValid(),
+        this.password_confirmation.isValid()
       ]
 
     name:

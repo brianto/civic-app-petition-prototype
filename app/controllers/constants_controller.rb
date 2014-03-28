@@ -14,6 +14,6 @@ class ConstantsController < ApplicationController
   private
   
   def constant_params
-    params.require(:constants).permit(:goal, :site_title)
+    params.require(:constants).permit(:goal, :site_title, :site_description)
   end
 end

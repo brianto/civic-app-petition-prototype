@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140324035935) do
+ActiveRecord::Schema.define(version: 20140328153305) do
 
   create_table "constants", force: true do |t|
     t.string   "site_title"
     t.integer  "goal"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "site_description"
   end
 
   create_table "petitions", force: true do |t|

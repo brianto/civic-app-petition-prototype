@@ -8,6 +8,7 @@
 
 constant = Constants.create \
   :site_title => "Everyday City People",
+  :site_description => "pending description",
   :goal => 10
   
 andres = Resident.create :name => "DrunkMcAndres"
