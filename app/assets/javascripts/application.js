@@ -15,7 +15,6 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require angular
-//= require turbolinks
 //
 //= require civic
 //
