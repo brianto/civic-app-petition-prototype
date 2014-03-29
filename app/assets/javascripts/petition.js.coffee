@@ -8,7 +8,27 @@ $(document).ready ->
       type: "POST"
     .done ->
       document.location = document.URL # reload, the ugly way
-
+      
+civic.controller "NewPetitionController", ($scope) ->
+  $scope.model =
+    title: ""
+    statement: ""
+    
+  $scope.validation =
+    allValid: allValidFn this
+  
+    title:
+      isValid: ->
+        not _.isEmpty $scope.model.title
+      errorMessage: ->
+        "Title cannot be empty"
+      
+    statement:
+      isValid: ->
+        not _.isEmpty $scope.model.statement
+      errorMessage: ->
+        "Statement cannot be empty"
+        
 civic.controller "SearchController", ($scope) ->
   SEARCH_URL = _.template "/petitions/find/<%= query %>"
   

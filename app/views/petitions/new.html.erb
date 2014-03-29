@@ -1,20 +1,38 @@
-
-<%= form_for @petition, :html => {:role => "form", :class => "form-horizontal single_form"} do |p| %>
-  <div class="form-group">
+<%= form_for @petition,
+  :html => {
+    "ng-controller" => "NewPetitionController",
+    :role => "form",
+    :class => "form-horizontal single_form"
+  } do |p| %>
+  
+  <div class="form-group" ng-class="{ 'has-error': !validation.title.isValid() }">
   	<%= p.label :title, :class=> "col-sm-2 control-label" %>
   	<div class="col-sm-6">
-  		<%= p.text_field :title, :class => "form-control", :placeholder => "Petiton Title"%>
+  		<%= p.text_field :title,
+  		  "ng-model" => "model.title",
+  		  :class => "form-control",
+  		  :placeholder => "Petiton Title"%>
   	</div>
+    <p class="help-block text-error" ng-show="!validation.title.isValid()">{{ validation.title.errorMessage() }}</p>
   </div>
-  <div class="form-group">
+  
+  <div class="form-group" ng-class="{ 'has-error': !validation.statement.isValid() }">
   	<%= p.label :statement, :class => "col-sm-2 control-label"%>
   	<div class="col-sm-6">
-  		<%= p.text_area :statement, :class => "form-control", :placeholder => "Mission Statement", :rows => "6"%>
+  		<%= p.text_area :statement,
+        "ng-model" => "model.statement",
+  		  :class => "form-control",
+  		  :placeholder => "Mission Statement",
+  		  :rows => "6"%>
   	</div>
+    <p class="help-block text-error" ng-show="!validation.statement.isValid()">{{ validation.statement.errorMessage() }}</p>
   </div>
+  
   <div class="form-group">
-	<div class="col-sm-offset-2 col-sm-10">
-  		<%= p.submit :class => "btn btn-default" %>
+  	<div class="col-sm-offset-2 col-sm-10">
+  		<%= p.submit \
+  		  "ng-disabled" => "!validation.allValid()",
+  		  :class => "btn btn-default" %>
   	</div>
   </div>
 <% end %>

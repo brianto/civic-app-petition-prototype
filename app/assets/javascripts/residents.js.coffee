@@ -8,13 +8,7 @@ civic.controller "ResidentFormController", ($scope) ->
     crypted_password: ""
 
   $scope.validation =
-    allValid: ->
-      _.all [
-        this.name.isValid(),
-        this.email.isValid(),
-        this.password.isValid(),
-        this.password_confirmation.isValid()
-      ]
+    allValid: allValidFn this
 
     name:
       isValid: ->
