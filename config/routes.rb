@@ -22,5 +22,5 @@ CivicAppPetitionPrototype::Application.routes.draw do
   get "/search" => "petitions#search"
   get "/petitions/search" => "petitions#search"
   
-  post "/petitions/find" => "petitions#find"
+  get "/petitions/find/:query" => "petitions#find"
 end

@@ -43,30 +43,24 @@ class PetitionsController < ApplicationController
     redirect_to petition_url petition
   end
   
-  def search
-    
-  end
-  
   def find
-    # Get the search string
-    searcher = Regexp.new params[:SearchString], true # case insensitive
+    json = Petition
     
-    ret = []
-    
-    # Search through titles
-    petitions = Petition.all
-    
-    petitions.each do |petition|
-      if searcher.match petition.title
-        ret << petition
-      elsif searcher.match petition.statement
-        ret << petition
+      # find only petitions where the query string is in title or statement
+      .where("LOWER(title) LIKE :query OR LOWER(statement) LIKE :query", {
+        :query => "%#{params[:query].downcase}%"
+      })
+      
+      # give back only the title, statement, and petition path
+      .inject(Array.new) do |memo, petition|
+        memo + [{
+          :title => petition.title,
+          :statement => petition.statement,
+          :url => petition_path(petition)
+        }]
       end
-    end
     
-    @petitions = ret
-    
-    render :partial => "partials/search_results"
+    render :json => json
   end
   
 end

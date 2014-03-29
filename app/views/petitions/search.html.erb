@@ -1,36 +1,28 @@
-<div class="container">
-	<form class="single_form form-horizontal" id="search_form">
-		<div class="form-group">
-			<div class="col-lg-2"></div>
-		  	<div class="col-lg-6">
-		  		<input id="search_query" type="text" class="form-control" placeholder="Search for a petition..." />
-		  	</div>
-		  	<button type="submit" class="btn btn-primary col-lg-1">Search</button>
-	  	</div>
-	</form>
-	
-	<div id="search_results">
-		<ul id="search_list">
-			
-		</ul>
+<form
+  id="search_form"
+  ng-controller="SearchController"
+  class="single_form form-horizontal">
+  
+	<div class="form-group">
+  	<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-10">
+  		<input
+  		  id="query"
+  		  ng-model="model.query"
+  		  class="form-control" 
+  		  type="text"
+  		  placeholder="Search for a petition..." />
+  	</div>
+  	
+  	<button
+  	 ng-click="handlers.search()"
+  	 class="btn btn-primary col-lg-2 col-md-2 col-sm-2 col-xs-2">
+     Search
+    </button>
 	</div>
 	
-</div>
-
-<script>
-	$("#search_form").on("submit", function(){
-  		var searchString = $("#search_query").val();
-  		
-	 	console.log(searchString);
-	 	
-	 	post = $.post("/petitions/find", {"SearchString": searchString});
-	 	
-	 	post.done(function(data){
-	 		$("#search_list").html(data);
-	 	});
-	 	
-	 	
-		return false; //Don't reload the page
-	});
-
-</script>
+  <ul>
+	  <li ng-repeat="result in model.results">
+	    <a href="{{ result.url }}">{{ result.title }}</a>
+    </li>
+  </ul>
+</form>
