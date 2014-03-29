@@ -1,4 +1,4 @@
-civic.controller "ResidentFormController", ($scope) ->
+civic.controller "PoliticianFormController", ($scope) ->
   MINIMUM_PASSWORD_LENGTH = 4
   
   $scope.model =
@@ -10,7 +10,7 @@ civic.controller "ResidentFormController", ($scope) ->
   $scope.validation =
     allValid: ->
       allValidFn(this)
-
+    
     name:
       isValid: ->
         !$scope.model.name.match /^\s*$/

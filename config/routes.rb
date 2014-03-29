@@ -3,6 +3,7 @@ CivicAppPetitionPrototype::Application.routes.draw do
   
   resources :petitions
   resources :residents
+  resources :politicians
   resources :users
   
   # Constants

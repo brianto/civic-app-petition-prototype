@@ -6,14 +6,6 @@ class Resident < ActiveRecord::Base
   accepts_nested_attributes_for :user
   
   def signedPetition(petition)
-    
-    
-    self.signatures.each do |signature|
-      p = signature.petition
-      if petition.id == p.id
-        return true
-      end 
-    end
-    false
+    self.signatures.where(:petition_id => petition.id).exists?
   end
 end

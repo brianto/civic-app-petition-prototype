@@ -1,0 +1,35 @@
+<%= form_for @politician,
+    :html => {
+      "ng-controller" => "PoliticianFormController",
+      :class => "form",
+      :role => "form" } do |politician| %>
+      
+  <div class="form-group" ng-class="{ 'has-error': !validation.name.isValid() }">
+    <%= politician.label :name %>
+    <%= politician.text_field :name, "ng-model" => "model.name", :class => "form-control" %>
+    <p class="help-block text-error" ng-show="!validation.name.isValid()">{{ validation.name.errorMessage() }}</p>
+  </div>
+  
+  <%= politician.fields_for :user do |user| %>
+    <div class="form-group" ng-class="{ 'has-error': !validation.email.isValid() }">
+      <%= user.label :email %>
+      <%= user.text_field :email, "ng-model" => "model.email", :class => "form-control" %>
+      <p class="help-block text-error" ng-show="!validation.email.isValid()">{{ validation.email.errorMessage() }}</p>
+    </div>
+    
+    <div class="form-group" ng-class="{ 'has-error': !validation.password.isValid() }">
+      <%= user.label :password %>
+      <%= user.password_field :password, "ng-model" => "model.password", :class => "form-control" %>
+      <p class="help-block text-error" ng-show="!validation.password.isValid()">{{ validation.password.errorMessage() }}</p>
+    </div>
+    
+    <div class="form-group" ng-class="{ 'has-error': !validation.password_confirmation.isValid() }">
+      <%= user.label :password_confirmation %>
+      <%= user.password_field :password_confirmation, "ng-model" => "model.password_confirmation", :class => "form-control" %>
+      <p class="help-block text-error" ng-show="!validation.password_confirmation.isValid()">{{ validation.password_confirmation.errorMessage() }}</p>
+    </div>
+    
+  <% end %>
+  
+  <%= submit_tag "Mutherfucking GO!!", "ng-disabled" => "!validation.allValid()", :class => "btn btn-success" %>
+<% end %>
