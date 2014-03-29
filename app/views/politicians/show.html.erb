@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+    <strong>Approved</strong>
+    <ul>
+      <% @approved.each do |petition| %>
+        <li><%= link_to petition.title, petition_path(petition) %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

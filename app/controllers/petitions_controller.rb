@@ -1,5 +1,4 @@
 class PetitionsController < ApplicationController
-  #
   def index
     @petitions=Petition.all
   end
@@ -28,9 +27,10 @@ class PetitionsController < ApplicationController
   
   def show
     @petition = Petition.find(params[:id])
-    @signatures = @petition.getSuporters
+    @signatures = @petition.signatures
     @count = @signatures.length
-    @show_sign = (not @current_user.nil? and not @current_user.role.signedPetition(@petition))
+    @signable = current_user && current_user.is_resident? && !current_user.role.signed?(@petition)
+    @respondable = current_user && current_user.is_politician? && !current_user.role.addressed?(@petition)
   end
   
   def sign
@@ -58,5 +58,4 @@ class PetitionsController < ApplicationController
     
     render :json => json
   end
-  
 end

@@ -6,25 +6,25 @@ class Petition < ActiveRecord::Base
   before_create :setGoal
   after_create :signByOwner
   
-  def getSuporters
-    list = []
-    self.signatures.each do |signature|
-      list << signature
-    end
-    list
+  def self.approved
+    select { |p| p.signatures.count >= p.goal }
   end
   
+  def approved?
+    self.signatures.count >= self.goal
+  end
+
   private
+  
   def setGoal
     goal = Constants.first.goal
     self.goal = goal
   end
   
   def signByOwner
-    sig = Signature.new
-    sig.resident = self.resident
-    sig.petition = self
-    sig.save 
+    Signature.create \
+      :resident => self.resident,
+      :petition => self
   end
   
 end

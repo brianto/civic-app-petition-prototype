@@ -1,4 +1,6 @@
 class PoliticiansController < ApplicationController
+  before_filter :ensure_admin, :only => [:new, :create]
+
   def new
     @user = User.new
     @politician = Politician.new :user => @user
@@ -19,7 +21,7 @@ class PoliticiansController < ApplicationController
   end
   
   def show
-    
+    @approved = Petition.approved
   end
   
   def edit

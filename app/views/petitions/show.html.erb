@@ -1,8 +1,9 @@
 <!-- Start petition description -->
 <div class="jumbotron">
-	<%if @show_sign%>
-	<a class="pull-right btn btn-primary visible-md visible-lg sign_petition" role="button">Sign</a>
-	<%end%>
+	<% if @signable %>
+	 <a class="pull-right btn btn-primary visible-md visible-lg sign_petition" role="button">Sign</a>
+	<% end %>
+	
 	<h1><%= @petition.title %></h1>
 	<h2><%= @petition.statement%></h2>
 </div>
@@ -14,7 +15,7 @@
 		<h3>Current Signatures: <%= @count %> </h3>
 	</div>
 	<div class="col-lg-6">
-		<h3>Goal: <%= @petition.goal%></h3>
+		<h3>Goal: <%= @petition.goal %></h3>
 	</div>
 </div>
 <!-- End signatures -->
@@ -26,20 +27,21 @@
 </div>
 <h2>Supporters:</h2>
 <div class="row">
-<%@signatures.each do |signature|%>
+<%@signatures.each do |signature| %>
 	<!-- Switch to partials? Or at least abstract it to the signature show... -->
 	<div class="col-lg-5 col-md-4" style="background-color: #EEE"> <!-- Figure out a way to style this -->
 		<div class="container">
 				<h2><%= signature.resident.name %></h2>
 		</div>
 	</div>
-<%end%>
+<% end %>
 </div>
 <br />
-<%if @show_sign %>
+
+<% if @signable %>
 <div class="row">
 	<div class="col-md-2">
 		<a class="btn btn-primary btn-lg btn-block sign_petition" role="button">Sign</a>
 	</div>
 </div>
-<%end%>
+<% end %>
