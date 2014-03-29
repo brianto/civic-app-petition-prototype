@@ -45,13 +45,9 @@ class PetitionsController < ApplicationController
   
   def find
     json = Petition
-    
-      # find only petitions where the query string is in title or statement
       .where("LOWER(title) LIKE :query OR LOWER(statement) LIKE :query", {
         :query => "%#{params[:query].downcase}%"
       })
-      
-      # give back only the title, statement, and petition path
       .inject(Array.new) do |memo, petition|
         memo + [{
           :title => petition.title,

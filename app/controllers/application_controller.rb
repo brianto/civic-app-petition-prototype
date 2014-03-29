@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
   end
     
   def ensure_admin
-    unless current_user && current_user.role.is_a?(Sysadmin) then
+    unless current_user && current_user.is_sysadmin? then
       render :status => :forbidden
     end
   end
