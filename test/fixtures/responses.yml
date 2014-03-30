@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  petition_id: 
+  politician_id: 
+  statement: MyText
+
+two:
+  petition_id: 
+  politician_id: 
+  statement: MyText

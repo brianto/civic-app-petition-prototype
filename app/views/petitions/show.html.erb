@@ -25,9 +25,17 @@
     <span class="sr-only"><%= ((@count * 1.0) / @petition.goal) * 100 %>% Complete</span>
   </div>
 </div>
-<h2>Supporters:</h2>
+
+<% @responses.each do |response| %>
+  <div class="well">
+    <p><%= response.statement.html_safe %></p>
+    <span class="text-muted pull-right"><%= response.politician.name %></span>
+  </div>
+<% end %>
+
 <div class="row">
-<%@signatures.each do |signature| %>
+<h2>Supporters:</h2>
+<% @signatures.each do |signature| %>
 	<!-- Switch to partials? Or at least abstract it to the signature show... -->
 	<div class="col-lg-5 col-md-4" style="background-color: #EEE"> <!-- Figure out a way to style this -->
 		<div class="container">
@@ -43,5 +51,17 @@
 	<div class="col-md-2">
 		<a class="btn btn-primary btn-lg btn-block sign_petition" role="button">Sign</a>
 	</div>
+</div>
+<% end %>
+
+<% if @respondable %>
+<div class="row">
+  <div class="col-md-2">
+    <% if @addressed %>
+      <%= link_to "Respond", edit_response_path(@my_response), :class => "btn btn-success btn-lg" %>
+    <% else %>
+      <%= link_to "Respond", new_response_path, :class => "btn btn-success btn-lg" %>
+    <% end %>
+  </div>
 </div>
 <% end %>

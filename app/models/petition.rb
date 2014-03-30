@@ -1,7 +1,7 @@
 class Petition < ActiveRecord::Base
   belongs_to :resident
   has_many :signatures
-  
+  has_many :responses
   
   before_create :setGoal
   after_create :signByOwner

@@ -1,7 +1,10 @@
 CivicAppPetitionPrototype::Application.routes.draw do
   root 'petitions#index'
   
-  resources :petitions
+  resources :petitions do
+    resources :responses, :shallow => true
+  end
+  
   resources :residents
   resources :politicians
   resources :users

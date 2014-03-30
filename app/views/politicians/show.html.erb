@@ -3,7 +3,17 @@
     <strong>Approved</strong>
     <ul>
       <% @approved.each do |petition| %>
-        <li><%= link_to petition.title, petition_path(petition) %></li>
+        <li>
+          <%= link_to petition.title, petition_path(petition) %>
+          
+          <% if @politician %>
+            <% if @politician.addressed? petition %>
+              <%= link_to "Edit", edit_response_path(@politician.response_for(petition)), :class => "btn btn-default btn-xs" %>
+            <% else %>
+              <%= link_to "Respond", new_petition_response_path(petition), :class => "btn btn-success btn-xs" %>
+            <% end %>          
+          <% end %>
+        </li>
       <% end %>
     </ul>
   </div>

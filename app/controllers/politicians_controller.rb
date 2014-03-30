@@ -21,6 +21,7 @@ class PoliticiansController < ApplicationController
   end
   
   def show
+    @politician = current_user.role if current_user && current_user.is_politician?
     @approved = Petition.approved
   end
   

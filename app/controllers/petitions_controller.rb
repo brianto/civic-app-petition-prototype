@@ -12,7 +12,6 @@ class PetitionsController < ApplicationController
   end
   
   def create
-    
     title = params[:petition][:title]
     statement = params[:petition][:statement]
     @petition = Petition.create :title => title, :statement => statement, :goal => @constants.goal, :resident => @current_user.role
@@ -29,8 +28,13 @@ class PetitionsController < ApplicationController
     @petition = Petition.find(params[:id])
     @signatures = @petition.signatures
     @count = @signatures.length
+    
     @signable = current_user && current_user.is_resident? && !current_user.role.signed?(@petition)
-    @respondable = current_user && current_user.is_politician? && !current_user.role.addressed?(@petition)
+    @respondable = current_user && current_user.is_politician? && @petition.approved?
+    @addressed = @respondable && current_user.role.addressed?(@petition)
+    
+    @responses = Response.where(:petition => @petition)
+    @my_response = Response.find_by :politician => current_user.role, :petition => @petition
   end
   
   def sign

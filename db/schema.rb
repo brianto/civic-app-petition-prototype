@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140328153305) do
+ActiveRecord::Schema.define(version: 20140330001301) do
 
   create_table "constants", force: true do |t|
     t.string   "site_title"
@@ -41,6 +41,17 @@ ActiveRecord::Schema.define(version: 20140328153305) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "responses", force: true do |t|
+    t.integer  "petition_id"
+    t.integer  "politician_id"
+    t.text     "statement"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "responses", ["petition_id"], name: "index_responses_on_petition_id"
+  add_index "responses", ["politician_id"], name: "index_responses_on_politician_id"
 
   create_table "signatures", force: true do |t|
     t.integer  "resident_id"

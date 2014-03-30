@@ -1,0 +1,19 @@
+<p>Responding to <strong><%= @petition.title %></strong></p>
+<p><%= @petition.statement %></p>
+
+<%= form_for [@petition, @response],
+  :url => {
+    :action => :update
+  },
+  :html => {
+    :role => "form",
+    :class => "form"
+  } do |response| %>
+
+  <div class="form-group">
+    <%= response.label :statement %>
+    <%= response.text_area :statement, :class => "form-control" %>
+  </div>
+
+  <%= response.submit "Update", :class => "btn btn-success pull-right" %>
+<% end %>
