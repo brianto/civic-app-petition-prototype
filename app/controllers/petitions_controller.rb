@@ -34,7 +34,7 @@ class PetitionsController < ApplicationController
     @addressed = @respondable && current_user.role.addressed?(@petition)
     
     @responses = Response.where(:petition => @petition)
-    @my_response = Response.find_by :politician => current_user.role, :petition => @petition
+    @my_response = Response.find_by :politician => current_user.role, :petition => @petition if @addressed
   end
   
   def sign
