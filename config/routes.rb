@@ -32,4 +32,6 @@ CivicAppPetitionPrototype::Application.routes.draw do
   
   # Paginate
   get "/petitions/page/:page" => "petitions#index"
+  
+  get "/petitions/:id/:page" => "petitions#show"
 end

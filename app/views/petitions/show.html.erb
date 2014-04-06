@@ -44,6 +44,9 @@
 	</div>
 <% end %>
 </div>
+<div class="text-center">
+<%= will_paginate @signatures, renderer: BootstrapPagination::Rails, :previous_label => "&laquo;", :next_label => "&raquo;"%>
+</div>
 <br />
 
 <% if @signable %>

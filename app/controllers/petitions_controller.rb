@@ -39,8 +39,14 @@ class PetitionsController < ApplicationController
   
   def show
     @petition = Petition.find(params[:id])
-    @signatures = @petition.signatures
-    @count = @signatures.length
+    if(params[:page])
+      @signatures = @petition.signatures.page(params[:page]).per_page(1)
+    else
+      @signatures = @petition.signatures.page(1)
+    end
+    
+    # Get the signature count
+    @count = @petition.signatures.count
     
     @signable = current_user && current_user.is_resident? && !current_user.role.signed?(@petition)
     @respondable = current_user && current_user.is_politician? && @petition.approved?
