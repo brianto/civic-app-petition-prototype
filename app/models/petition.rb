@@ -17,8 +17,11 @@ class Petition < ActiveRecord::Base
   private
   
   def setGoal
-    goal = Constants.first.goal
-    self.goal = goal
+    #Set a default if nothing is set
+    if self.goal.nil?
+      goal = Constants.first.goal
+      self.goal = goal
+    end
   end
   
   def signByOwner
