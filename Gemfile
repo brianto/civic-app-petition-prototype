@@ -28,6 +28,8 @@ gem 'turbolinks'
 gem 'authlogic'
 gem 'scrypt' # because authlogic needs it? shouldn't that be a dependency, then?
 
+gem 'redcarpet'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
@@ -48,8 +50,10 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-# Use thejs enviorment for linux
+# Use the js enviorment for linux
 if not RbConfig::CONFIG["host_os"] =~ /mswin|mingw/
   gem 'therubyracer', :platforms => [:ruby]
 end
+
+gem 'activeadmin', github: 'gregbell/active_admin'
 
