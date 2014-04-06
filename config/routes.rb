@@ -27,4 +27,7 @@ CivicAppPetitionPrototype::Application.routes.draw do
   get "/petitions/search" => "petitions#search"
   
   get "/petitions/find/:query" => "petitions#find"
+  
+  # Paginate
+  get "/petitions/page/:page" => "petitions#index"
 end
