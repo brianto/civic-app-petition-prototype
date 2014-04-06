@@ -14,4 +14,22 @@ ActiveAdmin.register Petition do
   #  permitted
   # end
   
+  permit_params :title, :statement, :goal, :resident
+  controller do
+    def create
+      
+      title = params[:petition][:title]
+      statement = params[:petition][:statement]
+      goal = params[:petition][:goal]
+      resident = Resident.find_by_id(params[:petition][:resident_id])
+      
+      @petition = Petition.new(:title => title, :statement => statement, :goal => goal, :resident => resident)
+      if @petition
+        @petition.save
+      end
+      
+      redirect_to admin_petitions_url
+    end
+  end
+  
 end
