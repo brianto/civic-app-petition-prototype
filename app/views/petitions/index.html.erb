@@ -13,9 +13,9 @@
   <% end %>
 </div>
 
-<%if !@page.nil?%>
+
 <div class="text-center">
 <%= will_paginate @petitions, renderer: BootstrapPagination::Rails, :previous_label => "&laquo;", :next_label => "&raquo;"%>
 </div>
-<% end %>
+
 
