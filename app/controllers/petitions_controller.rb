@@ -1,6 +1,19 @@
 class PetitionsController < ApplicationController
   def index
-    @petitions=Petition.all
+    count = params[:count]
+    page = params[:page]
+    if(count.nil? and page.nil?) 
+      @petitions=Petition.order("created_at DESC").all
+    else
+      if(count.nil?)
+        count = 5
+      end
+      page = page.to_i
+      count = count.to_i
+      @petitions = Petition.order("created_at DESC").offset(count*(page-1)).first(count)
+      @pagecount = (Petition.count/(count*1.0)).ceil
+      @page = page
+    end
   end
   
   def new
