@@ -13,36 +13,9 @@
   <% end %>
 </div>
 
-<% if !@pagecount.nil? %>
+<%if !@page.nil?%>
 <div class="text-center">
-	  <ul class="pagination">
-	  	
-	  	<% if @page == 1%>
-	  		<li class="disabled"><a>&laquo;</a></li>
-	  	<% else %>
-	  		<li><a href="/petitions/page/<%= @page-1 %>">&laquo;</a></li>
-	  	<% end %>
-	  
-			<% (1..@pagecount).each do |i| %>
-				<% if @pagecount > 9 %>
-					<!-- This needs to be done. Will break for over 9 pages now.-->
-					
-		  		<% else %>
-					<% if @page == i %>
-		  				<li class="active"><a href="/petitions/page/<%= i %>"><%= i %></a></li>
-		  			<% else %>
-		  				<li><a href="/petitions/page/<%= i %>"><%= i %></a></li>
-		  			<% end %>
-				<% end %>
-			<% end %>
-		
-		<% if @page == @pagecount%>
-  			<li class="disabled"><a>&raquo;</a></li>
-  		<% else %>
-  			<li><a href="/petitions/page/<%= @page+1 %>">&raquo;</a></li>
-  		<% end %>
-
-  	  </ul>
+<%= will_paginate @petitions, renderer: BootstrapPagination::Rails, :previous_label => "&laquo;", :next_label => "&raquo;"%>
 </div>
 <% end %>
 

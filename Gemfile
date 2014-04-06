@@ -57,3 +57,8 @@ end
 
 gem 'activeadmin', github: 'gregbell/active_admin'
 
+# will_paginate, should solve our pagination issues
+gem 'will_paginate'
+
+# Styling support
+gem 'will_paginate-bootstrap'
