@@ -5,5 +5,5 @@ class Signature < ActiveRecord::Base
   validates :resident, :uniqueness => { :scope => :petition }
   
   # Set default for pagination
-  self.per_page = 1#20
+  self.per_page = 20
 end

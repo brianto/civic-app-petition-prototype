@@ -40,7 +40,7 @@ class PetitionsController < ApplicationController
   def show
     @petition = Petition.find(params[:id])
     if(params[:page])
-      @signatures = @petition.signatures.page(params[:page]).per_page(1)
+      @signatures = @petition.signatures.page(params[:page])
     else
       @signatures = @petition.signatures.page(1)
     end
