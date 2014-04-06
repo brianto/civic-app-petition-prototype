@@ -12,7 +12,6 @@
  *= require bootstrap-theme
  * 
  *= require_self
- *= require_tree .
  */
 
 body {
