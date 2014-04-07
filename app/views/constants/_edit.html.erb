@@ -1,0 +1,25 @@
+<%@constants = Constants.first%>
+<%= form_for @constants,
+	
+    :html => {
+      :class => "form formtastic",
+      :role => "form"
+    } do |const| %>
+  <fieldset class="inputs">
+  	<ol>
+	  <li>
+	    <%= const.label :goal %>
+	    <%= const.text_field :goal, :class => "form-control" %>
+	  </li>
+	  <li>
+	    <%= const.label :site_title %>
+	    <%= const.text_field :site_title, :class => "form-control" %>
+	  </li>
+	  <li>
+	    <%= const.label :site_description %>
+	    <%= const.text_field :site_description, :class => "form-control" %>
+	  </li>
+  </ol>  
+  </fieldset>
+  <%= const.submit "Update", :class => "btn btn-success" %>
+<% end %>

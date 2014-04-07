@@ -1,14 +1,10 @@
 class ConstantsController < ApplicationController
-  before_filter :ensure_admin
 
-  def edit
-    
-  end
-  
+  # TODO Make sure it comes from the admin dashboard
   def update
     @constants.update constant_params
-
-    redirect_to admin_path    
+    #render :nothing => true
+    redirect_to admin_constants_url 
   end
   
   private
