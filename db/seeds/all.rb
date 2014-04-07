@@ -16,8 +16,6 @@ andrew = Resident.create :name => "DrewBitchboyFilipski"
 
 brian = Politician.create :name => "SimplyBrian"
 
-admin = Sysadmin.create
-
 User.create \
   :email => "andres@andres.com",
   :password => "Andres1",
@@ -35,12 +33,6 @@ User.create \
   :password => "Brian1",
   :password_confirmation => "Brian1",
   :role => brian
-
-User.create \
-  :email => "admin@admin.com",
-  :password => "Admin1",
-  :password_confirmation => "Admin1",
-  :role => admin
 
 brocode = Petition.create \
   :title => "Bro Code #2345207",
