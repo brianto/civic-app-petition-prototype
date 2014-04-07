@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  attr_accessor :name # Used for active admin purposes
   belongs_to :role, :polymorphic => true
   
   acts_as_authentic do |config|

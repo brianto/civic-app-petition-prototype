@@ -25,9 +25,9 @@ ActiveAdmin.register User do
 
       # Validate type
       newUser = nil
-      if(params[:user][:type].match(/Politician/))
+      if(params[:user][:role_type].match(/Politician/))
         newUser = Politician.new(:name => name, :user_attributes => user)
-      elsif(params[:user][:type].match(/Resident/))
+      elsif(params[:user][:role_type].match(/Resident/))
         newUser = Resident.new(:name => name, :user_attributes => user)
       end
 
@@ -40,6 +40,7 @@ ActiveAdmin.register User do
     end
   end
 
+  # INDEX PAGE
   filter :role_type
   filter :email
   filter :created_at
@@ -54,5 +55,15 @@ ActiveAdmin.register User do
     column :updated_at
     actions
   end
-  
+
+  # NEW / EDIT PAGE
+  form do |f|
+    f.inputs "User" do
+      f.input :name, :label => "Name", :required => true
+      f.input :role_type, :as => :select, :collection => ["Resident", "Politician"], :label => "Role Type"
+      f.input :email, :as => :email, :label => "Email"
+      f.input :password, :as => :password, :label => "Password"
+    end
+    f.actions
+  end
 end
