@@ -1,6 +1,6 @@
 class PoliticiansController < ApplicationController
   #before_filter :ensure_admin, :only => [:new, :create] # Make into new admin limit
-
+  
   def new
     @user = User.new
     @politician = Politician.new :user => @user
@@ -21,8 +21,10 @@ class PoliticiansController < ApplicationController
   end
   
   def show
+    require 'will_paginate/array'
+    page = params[:page].nil? ? 1 : params[:page]
     @politician = current_user.role if current_user && current_user.is_politician?
-    @approved = Petition.approved
+    @approved = Petition.approved.paginate(:page => page, :per_page => 10)
   end
   
   def edit

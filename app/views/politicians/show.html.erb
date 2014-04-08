@@ -1,23 +1,32 @@
+
+<h2>Welcome, <%= @politician.name%>!</h2>
+<p>From this page you can see all the petitions you have sponsored or responded to.</p>
+<p>To sign petitions please sign in as a regular user.</p>
+
 <div class="row">
-  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
-    <strong>Approved</strong>
+  <div class="col-lg-4 col-md-5 col-sm-6">
+    <h3>Approved</h3>
     
       <% @approved.each do |petition| %>
         <div class="row">
           <div class="col-md-4 col-sm-6">
           <%= link_to petition.title, petition_path(petition) %>
           </div>
-          <div class="col-md-3 col-sm-1">
+          <div class="col-md-4 col-sm-1">
+          </div>
           <% if @politician %>
             <% if @politician.addressed? petition %>
-              <%= link_to "Edit", edit_response_path(@politician.response_for(petition)), :class => "btn btn-default btn-xs" %>
+              <%= link_to "Edit", edit_response_path(@politician.response_for(petition)), :class => "btn btn-default btn-xs col-md-3 " %>
             <% else %>
-              <%= link_to "Respond", new_petition_response_path(petition), :class => "btn btn-success btn-xs" %>
+              <%= link_to "Respond", new_petition_response_path(petition), :class => "btn btn-success btn-xs col-md-3 " %>
             <% end %>          
           <% end %>
-          </div>
         </div>
       <% end %>
+      <br/>
+      <div class="text-center">
+		<%= will_paginate @approved, renderer: BootstrapPagination::Rails, :previous_label => "&laquo;", :next_label => "&raquo;"%>
+	  </div>
     
   </div>
 </div>

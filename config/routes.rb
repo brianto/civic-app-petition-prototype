@@ -40,4 +40,7 @@ CivicAppPetitionPrototype::Application.routes.draw do
 
   # Paginate signatures
   get "/petitions/:id/:page" => "petitions#show"
+  
+  # Paginate political responses
+  get "/politicians/:id/:page" => "politicians#show"
 end
