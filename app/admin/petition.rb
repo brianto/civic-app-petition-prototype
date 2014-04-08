@@ -31,5 +31,14 @@ ActiveAdmin.register Petition do
       redirect_to admin_petitions_url
     end
   end
+
+  sidebar "Petition Signatures", only: [:show, :edit] do
+    h2 "Signatures: " << petition.signatures.count.to_s
+    ul do
+      petition.signatures.each do |sig|
+        li link_to(sig.resident.name, admin_user_path(sig.resident.user))
+      end
+    end
+  end
   
 end

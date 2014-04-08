@@ -48,7 +48,9 @@ ActiveAdmin.register User do
 
   index do
     selectable_column
-    column :id
+    column :id, :sortable => :id do |user|
+      link_to(user.id.to_s, admin_user_path(user))
+    end
     column "Name" do |user|
       user.role.name # Get the users name
     end
@@ -62,11 +64,23 @@ ActiveAdmin.register User do
   # NEW / EDIT PAGE
   form do |f|
     f.inputs "User" do
-      f.input :name, :label => "Name", :required => true
+      f.input :name, :label => "Name", :required => true, :input_html => {:value => user.role.nil? ? "" : user.role.name}
       f.input :role_type, :as => :select, :collection => ["Resident", "Politician"], :label => "Role Type"
       f.input :email, :as => :email, :label => "Email"
       f.input :password, :as => :password, :label => "Password"
     end
     f.actions
   end
+
+  sidebar "User Details", only: [:show, :edit] do
+    # Resident specific side stuff
+    if user.is_resident?
+      link_to("Signatures", :controller => "signatures", :action => "index", "q[resident_id_eq]" => "#{user.role.id}".html_safe)
+    else # Any politicians stuff goes here
+      h3 "Politician"
+    end
+
+  end
+
+
 end
