@@ -1,10 +1,7 @@
 <div class="pull-right">
   <span class="navbar-text">
-    <% if current_user.is_sysadmin? %>
-      Welcome, <%= link_to current_user.role.name, admin_path, :class => "text-muted" %>
-    <% else %>
       Welcome, <%= link_to current_user.role.name, user_path(current_user), :class => "text-muted" %>
-    <% end %>
+
   </span>
   
   <%= link_to "Sign Out", logout_path, :class => "btn btn-default navbar-btn" %>  
