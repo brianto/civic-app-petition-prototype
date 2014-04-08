@@ -3,6 +3,15 @@
 	<% if @signable %>
 	 <a class="pull-right btn btn-primary visible-md visible-lg sign_petition" role="button">Sign</a>
 	<% end %>
+	<% if @respondable %>
+		<div class="pull-right">
+	    <% if @addressed %>
+	      <%= link_to "Respond", edit_response_path(@my_response), :class => "btn btn-success btn-lg" %>
+	    <% else %>
+	      <%= link_to "Respond",  new_petition_response_path(@petition) , :class => "btn btn-success btn-lg" %>
+	    <% end %>
+	  	</div>
+  	<% end %>
 	
 	<h1><%= @petition.title %></h1>
 	<h2><%= raw @markdown.render(@petition.statement)%></h2>
@@ -57,14 +66,5 @@
 </div>
 <% end %>
 
-<% if @respondable %>
-<div class="row">
-  <div class="col-md-2">
-    <% if @addressed %>
-      <%= link_to "Respond", edit_response_path(@my_response), :class => "btn btn-success btn-lg" %>
-    <% else %>
-      <%= link_to "Respond", new_response_path, :class => "btn btn-success btn-lg" %>
-    <% end %>
-  </div>
-</div>
-<% end %>
+
+

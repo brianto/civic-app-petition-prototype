@@ -1,11 +1,13 @@
 <div class="row">
   <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
     <strong>Approved</strong>
-    <ul>
+    
       <% @approved.each do |petition| %>
-        <li>
+        <div class="row">
+          <div class="col-md-4 col-sm-6">
           <%= link_to petition.title, petition_path(petition) %>
-          
+          </div>
+          <div class="col-md-3 col-sm-1">
           <% if @politician %>
             <% if @politician.addressed? petition %>
               <%= link_to "Edit", edit_response_path(@politician.response_for(petition)), :class => "btn btn-default btn-xs" %>
@@ -13,8 +15,9 @@
               <%= link_to "Respond", new_petition_response_path(petition), :class => "btn btn-success btn-xs" %>
             <% end %>          
           <% end %>
-        </li>
+          </div>
+        </div>
       <% end %>
-    </ul>
+    
   </div>
 </div>
