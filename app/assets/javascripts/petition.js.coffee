@@ -8,6 +8,12 @@ $(document).ready ->
       type: "POST"
     .done ->
       document.location = document.URL # reload, the ugly way
+  $("#report_petition").on "click", ->
+    $.ajax
+      url: window.location + "/report"
+      type: "POST"
+    .done ->
+      document.location = document.URL # reload, the ugly way
 
   # Live preview things
   update =  ->

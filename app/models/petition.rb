@@ -2,6 +2,7 @@ class Petition < ActiveRecord::Base
   belongs_to :resident
   has_many :signatures
   has_many :responses
+  has_many :reports
   
   before_create :setGoal
   after_create :signByOwner

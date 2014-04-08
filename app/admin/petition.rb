@@ -34,11 +34,7 @@ ActiveAdmin.register Petition do
 
   sidebar "Petition Signatures", only: [:show, :edit] do
     h2 "Signatures: " << petition.signatures.count.to_s
-    ul do
-      petition.signatures.each do |sig|
-        li link_to(sig.resident.name, admin_user_path(sig.resident.user))
-      end
-    end
+    h2 "Reports: " << petition.reports.count.to_s  
   end
   
 end

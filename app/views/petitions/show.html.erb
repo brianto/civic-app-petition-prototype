@@ -48,14 +48,12 @@
 	<!-- Switch to partials? Or at least abstract it to the signature show... -->
 	<div class="col-lg-5 col-md-4" style="background-color: #EEE"> <!-- Figure out a way to style this -->
 		<div class="container">
-				<h2><%= signature.resident.name %></h2>
+			<h2><%= signature.resident.name %></h2>
 		</div>
 	</div>
 <% end %>
 </div>
-<div class="text-center">
-<%= will_paginate @signatures, renderer: BootstrapPagination::Rails, :previous_label => "&laquo;", :next_label => "&raquo;"%>
-</div>
+
 <br />
 
 <% if @signable %>
@@ -65,6 +63,15 @@
 	</div>
 </div>
 <% end %>
+
+<div class="text-center">
+<%= will_paginate @signatures, renderer: BootstrapPagination::Rails, :previous_label => "&laquo;", :next_label => "&raquo;"%>
+</div>
+
+<% if !@reported %>
+	<a class="pull-right btn btn-danger" id="report_petition" role="button">Report Petition</a>
+<% end %>
+
 
 
 

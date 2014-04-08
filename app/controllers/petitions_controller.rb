@@ -54,6 +54,7 @@ class PetitionsController < ApplicationController
     
     @responses = Response.where(:petition => @petition)
     @my_response = Response.find_by :politician => current_user.role, :petition => @petition if @addressed
+    @reported = current_user && current_user.is_resident? && current_user.role.reported?(@petition)
   end
   
   def sign
@@ -88,5 +89,17 @@ class PetitionsController < ApplicationController
     end
 
     render :text => @markdown.render(params[:statement])
+  end
+  
+  def report
+    @petition = Petition.find(params[:id])
+    
+    report = Report.create(:resident => current_user.role, :petition => @petition)
+    if report.save!
+      # Do nothing
+      redirect_to petitions_path(@petition)
+    else
+      raise "Problem saving report"
+    end
   end
 end
