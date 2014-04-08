@@ -15,6 +15,7 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require angular
+//= require jquery.timer
 //
 //= require civic
 //

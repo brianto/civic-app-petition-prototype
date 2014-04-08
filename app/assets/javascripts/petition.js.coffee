@@ -8,7 +8,9 @@ $(document).ready ->
       type: "POST"
     .done ->
       document.location = document.URL # reload, the ugly way
-  $("#petition_statement").change ->
+
+  # Live preview things
+  update =  ->
     text = $("#petition_statement").val()
     $.ajax
       url: "/preview"
@@ -18,6 +20,15 @@ $(document).ready ->
         $("#preview_pane").html(data)
         console.log "Got called"
         console.log data
+
+  timer = $.timer(update, 3000, false) #Update the page every 3s
+
+  $("#petition_statement").on "focus", ->
+    timer.play(true) # Start the live updater every 3s
+
+  $("#petition_statement").on "blur", ->
+    timer.pause() #Stop the updating
+    timer.once()  #Call it one last time
 
 
 civic.controller "NewPetitionController", ($scope) ->
