@@ -1,8 +1,12 @@
-andres = Resident.create :name => "DrunkMcAndres"
-andrew = Resident.create :name => "DrewBitchboyFilipski"
 
-brian = Politician.create :name => "SimplyBrian"
+# Create the basic developer profiles
 
+# Build the Roles
+andres = Resident.create :name => "Andres Ruiz"
+andrew = Resident.create :name => "Andrew Filipski"
+brian = Politician.create :name => "Brian To"
+
+# Build the users
 User.create \
   :email => "andres@andres.com",
   :password => "Andres1",
@@ -21,25 +25,42 @@ User.create \
   :password_confirmation => "Brian1",
   :role => brian
 
-brocode = Petition.create \
-  :title => "Bro Code #2345207",
-  :statement => "No fucking bitches before the hackathon",
-  :resident => andres
+petition_list = []
+# Build the signatures
+(1..20).each do |number|
+  signer = nil
+  if(number % 2 == 0)
+    signer = andres
+  else
+    signer = andrew
+  end
 
-sunglasses = Petition.create \
-  :title => "Sunglasses",
-  :statement => "You know if you leave your sunglasses at your bro's house, your bro's penis gets to wear them!",
-  :resident => andres
 
-counting = Petition.create \
-  :title => "Counting",
-  :statement => "If you don't know how to count, just say it...",
-  :resident => andrew
+  petition = Petition.create \
+    :title => "Petition " << number.to_s,
+    :statement => "Lorem ipsum dolor sit amet, vide "\
+    "intellegam an sea, ut postea quaeque duo. Nostrud"\
+    " temporibus ei vix, mea ut tibique theophrastus.",
+    :resident => signer
 
-Signature.create \
-  :petition => sunglasses,
-  :resident => andrew
+  petition_list << petition
+end
 
-Signature.create \
-  :petition => counting,
-  :resident => andres
+# Build 40 random users for signing petitions
+
+(1..40).each do |number|
+  user = Resident.create :name => "User " << number.to_s
+  User.create \
+  :email => "user" << number.to_s << "@user.com",
+  :password => "Password1",
+  :password_confirmation => "Password1",
+  :role => user
+
+  petition_list.each do |petition|
+    Signature.create \
+      :petition => petition,
+      :resident => user
+  end
+
+end
+

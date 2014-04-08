@@ -49,6 +49,9 @@ ActiveAdmin.register User do
   index do
     selectable_column
     column :id
+    column "Name" do |user|
+      user.role.name # Get the users name
+    end
     column :email
     column :role_type
     column :created_at
