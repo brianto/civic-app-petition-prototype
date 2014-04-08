@@ -6,10 +6,6 @@ class User < ActiveRecord::Base
     config.login_field = :email
   end
   
-  def is_sysadmin?
-    self.role.is_a? Sysadmin
-  end
-  
   def is_politician?
     self.role.is_a? Politician
   end

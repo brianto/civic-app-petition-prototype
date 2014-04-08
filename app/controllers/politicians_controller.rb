@@ -1,5 +1,5 @@
 class PoliticiansController < ApplicationController
-  before_filter :ensure_admin, :only => [:new, :create]
+  #before_filter :ensure_admin, :only => [:new, :create] # Make into new admin limit
 
   def new
     @user = User.new
