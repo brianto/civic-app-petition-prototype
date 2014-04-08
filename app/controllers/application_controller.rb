@@ -9,6 +9,9 @@ class ApplicationController < ActionController::Base
   before_action do
     @constants = Constants.first
     @current_user = current_user
+    # Build the markdown engine
+    @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(prettify: true, hard_wrap: true),
+                                        tables: true, autolink: true, quote: true, footnotes: true)
   end
   
   helper_method :current_user

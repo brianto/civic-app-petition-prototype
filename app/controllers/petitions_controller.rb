@@ -81,4 +81,12 @@ class PetitionsController < ApplicationController
     
     render :json => json
   end
+
+  def preview
+    if params[:statement].nil?
+      raise "Invalid params #{params}"
+    end
+
+    render :text => @markdown.render(params[:statement])
+  end
 end

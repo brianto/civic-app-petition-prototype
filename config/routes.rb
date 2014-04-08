@@ -31,9 +31,13 @@ CivicAppPetitionPrototype::Application.routes.draw do
   get "/petitions/search" => "petitions#search"
   
   get "/petitions/find/:query" => "petitions#find"
-  
-  # Paginate
+
+  # Generate live previews
+  post "/preview" => "petitions#preview"
+
+  # Paginate Petitions
   get "/petitions/page/:page" => "petitions#index"
-  
+
+  # Paginate signatures
   get "/petitions/:id/:page" => "petitions#show"
 end

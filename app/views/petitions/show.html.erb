@@ -5,7 +5,7 @@
 	<% end %>
 	
 	<h1><%= @petition.title %></h1>
-	<h2><%= @petition.statement%></h2>
+	<h2><%= raw @markdown.render(@petition.statement)%></h2>
 </div>
 <!-- End Petition Description-->
 

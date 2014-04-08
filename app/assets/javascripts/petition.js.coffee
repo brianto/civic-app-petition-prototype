@@ -8,30 +8,41 @@ $(document).ready ->
       type: "POST"
     .done ->
       document.location = document.URL # reload, the ugly way
-      
+  $("#petition_statement").change ->
+    text = $("#petition_statement").val()
+    $.ajax
+      url: "/preview"
+      type: 'POST'
+      data: {statement: text}
+      success: (data) ->
+        $("#preview_pane").html(data)
+        console.log "Got called"
+        console.log data
+
+
 civic.controller "NewPetitionController", ($scope) ->
   $scope.model =
     title: ""
     statement: ""
-    
+
   $scope.validation =
     allValid: allValidFn this
-  
+
     title:
       isValid: ->
         not _.isEmpty $scope.model.title
       errorMessage: ->
         "Title cannot be empty"
-      
+
     statement:
       isValid: ->
         not _.isEmpty $scope.model.statement
       errorMessage: ->
         "Statement cannot be empty"
-        
+
 civic.controller "SearchController", ($scope) ->
   SEARCH_URL = _.template "/petitions/find/<%= query %>"
-  
+
   $scope.model =
     query: ""
     results: []
@@ -41,7 +52,7 @@ civic.controller "SearchController", ($scope) ->
       if _.isEmpty $scope.model.query
         $scope.model.results = []
         return
-      
+
       $.ajax
         url: SEARCH_URL
           query: $scope.model.query
