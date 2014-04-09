@@ -31,10 +31,49 @@ ActiveAdmin.register Petition do
       redirect_to admin_petitions_url
     end
   end
-
-  sidebar "Petition Signatures", only: [:show, :edit] do
-    h2 "Signatures: " << petition.signatures.count.to_s
-    h2 "Reports: " << petition.reports.count.to_s  
+  
+  index do
+    selectable_column
+    column :id, :sortable => :id do |petition|
+      link_to(petition.id.to_s, admin_petition_path(petition))
+    end
+    column :title
+    column :statement
+    column :resident, :sortable => 'resident_id'
+    column :goal
+    column :created_at
+    column :updated_at
+    actions
   end
+  
+  show do |petition|
+    attributes_table do
+      row :id
+      row :title
+      row :statement do
+        #raw @markdown.render(petition.statement) #Render the markdown with the same renderer
+        petition.statement
+      end
+      row :resident do
+        link_to(petition.resident.name, admin_user_url(petition.resident.user))
+      end
+      row "Signatures" do
+        link_to(petition.signatures.count.to_s, :controller => "signatures", 
+                :action => "index", "q[petition_id_eq]" => "#{petition.id}".html_safe)
+      end
+      row :goal
+      row "Percent Complete" do
+        [(petition.signatures.count * 100.0 / petition.goal), 100].min.to_s << "%"
+      end
+    end
+    active_admin_comments
+  end
+  
+  filter :resident
+  filter :title
+  filter :statement
+  filter :goal
+  filter :created_at
+  filter :updated_at
   
 end

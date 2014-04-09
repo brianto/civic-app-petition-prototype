@@ -1,4 +1,4 @@
-ActiveAdmin.register Report do
+ActiveAdmin.register Response do
 
   
   # See permitted parameters documentation:
@@ -13,6 +13,6 @@ ActiveAdmin.register Report do
   #  permitted << :other if resource.something?
   #  permitted
   # end
-  menu :parent => "Petitions"
   
+  menu :parent => "Users"
 end

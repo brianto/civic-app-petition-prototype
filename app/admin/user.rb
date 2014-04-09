@@ -73,11 +73,16 @@ ActiveAdmin.register User do
   end
 
   sidebar "User Details", only: [:show, :edit] do
+    ul do
     # Resident specific side stuff
     if user.is_resident?
-      link_to("Signatures", :controller => "signatures", :action => "index", "q[resident_id_eq]" => "#{user.role.id}".html_safe)
+      li link_to("Signatures", :controller => "signatures", :action => "index", "q[resident_id_eq]" => "#{user.role.id}".html_safe)
+      li link_to("Petitions", :controller => "petitions", :action => "index", "q[resident_id_eq]" => "#{user.role.id}".html_safe)
     else # Any politicians stuff goes here
       h3 "Politician"
+    end
+    
+    
     end
 
   end
