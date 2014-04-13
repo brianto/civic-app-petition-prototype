@@ -26,7 +26,7 @@ ActiveAdmin.register Report do
         @report.save!
       end
 
-      redirect_to admin_responses_url
+      redirect_to admin_reports_url
     end
   end
   
