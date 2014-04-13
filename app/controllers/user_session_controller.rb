@@ -9,6 +9,7 @@ class UserSessionController < ApplicationController
     if @user_session.save
       redirect_to root_path
     else
+      flash[:error] = "Invalid username or password"
       render :action => :new
     end
   end
