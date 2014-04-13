@@ -1,7 +1,7 @@
 <!-- Start petition description -->
 <div class="jumbotron">
 	<% if @signable %>
-	 <a class="pull-right btn btn-primary visible-md visible-lg sign_petition" role="button">Sign</a>
+	 <a class="pull-right btn btn-primary visible-md visible-lg" data-toggle="modal" data-target="#signModal" role="button">Sign</a>
 	<% end %>
 	<% if @respondable %>
 		<div class="pull-right">
@@ -59,7 +59,7 @@
 <% if @signable %>
 <div class="row">
 	<div class="col-md-2">
-		<a class="btn btn-primary btn-lg btn-block sign_petition" role="button">Sign</a>
+		<a class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#signModal" role="button">Sign</a>
 	</div>
 </div>
 <% end %>
@@ -69,9 +69,49 @@
 </div>
 
 <% if @reportable %>
-	<a class="pull-right btn btn-danger" id="report_petition" role="button">Report Petition</a>
+	<a class="pull-right btn btn-danger" data-toggle="modal" data-target="#reportModal" role="button">Report Petition</a>
 <% end %>
 
+
+
+
+<!-- Reporting a petition Modal -->
+<div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="reportModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="reportModalLabel">Report Petition</h4>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to report this petition?
+      </div>
+      <div class="modal-footer">
+      	<button type="button" id="report_petition" class="btn btn-primary">Report</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Signing a petition Modal -->
+<div class="modal fade" id="signModal" tabindex="-1" role="dialog" aria-labelledby="signModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="signModalLabel">Sign Petition</h4>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to sign this petition?
+      </div>
+      <div class="modal-footer">
+      	<button type="button" id="sign_petition" class="btn btn-primary">Sign</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
