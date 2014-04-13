@@ -19,12 +19,11 @@ ActiveAdmin.register Report do
     def create
 
       petition = Petition.find_by_id(params[:report][:petition_id])
-      politician = Resident.find_by_id(params[:response][:resident_id])
-      statement = params[:response][:statement]
+      resident = Resident.find_by_id(params[:report][:resident_id])
 
-      @response = Response.new(:petition => petition, :politician => politician, :statement => statement)
-      if @response
-        @response.save!
+      @report = Report.new(:petition => petition, :resident => resident)
+      if @report
+        @report.save!
       end
 
       redirect_to admin_responses_url
