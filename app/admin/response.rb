@@ -20,7 +20,7 @@ ActiveAdmin.register Response do
     def create
 
       petition = Petition.find_by_id(params[:response][:petition_id])
-      politician = Politician.find_by_id(params[:response][:petition_id])
+      politician = Politician.find_by_id(params[:response][:politician_id])
       statement = params[:response][:statement]
 
       @response = Response.new(:petition => petition, :politician => politician, :statement => statement)
