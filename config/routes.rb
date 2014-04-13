@@ -33,7 +33,7 @@ CivicAppPetitionPrototype::Application.routes.draw do
   get "/petitions/find/:query" => "petitions#find"
   
   # Report a petition
-  get "/petitions/:id/report" => "petitions#report"
+  post "/petitions/:id/report" => "petitions#report"
   
   # Generate live previews
   post "/preview" => "petitions#preview"

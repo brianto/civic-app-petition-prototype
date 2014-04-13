@@ -8,7 +8,7 @@
     <div class="col-md-4">
       <h2><%= p.title %></h2>
       <p>
-        <%= truncate(strip_tags(@markdown.render(p.statement)), :length => 100) %>
+        <%= truncate(sanitize(@markdown.render(p.statement), tags: %w()), :length => 100) %>
       </p>
       <p><%= link_to "View details &raquo;".html_safe, petition_path(p), :class => "btn btn-default"%></p>
     </div>
