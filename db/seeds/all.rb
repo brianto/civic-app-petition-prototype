@@ -9,5 +9,6 @@
 constant = Constants.create \
   :site_title => "Everyday City People",
   :site_description => "pending description",
-  :goal => 10
+  :goal => 10,
+  :resident_intro => "Resident Intro"
 
