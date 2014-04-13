@@ -4,29 +4,41 @@
       :class => "form",
       :role => "form" } do |resident| %>
       
-	<div class="form-group" ng-class="{ 'has-error': !validation.name.isValid() }">
+	<div class="form-group" ng-class="{ 'has-error': error.name }">
 		<%= resident.label :name %>
-		<%= resident.text_field :name, "ng-model" => "model.name", :class => "form-control" %>
-    <p class="help-block text-error" ng-show="!validation.name.isValid()">{{ validation.name.errorMessage() }}</p>
+    <%= resident.text_field :name,
+      "ng-model" => "model.name",
+      "ng-blur" => "validation.name()",
+      :class => "form-control" %>
+    <p class="help-block text-error" ng-show="error.name">{{ error.name }}</p>
 	</div>
 	
 	<%= resident.fields_for :user do |user| %>
-		<div class="form-group" ng-class="{ 'has-error': !validation.email.isValid() }">
+		<div class="form-group" ng-class="{ 'has-error': error.email }">
 			<%= user.label :email %>
-			<%= user.text_field :email, "ng-model" => "model.email", :class => "form-control" %>
-      <p class="help-block text-error" ng-show="!validation.email.isValid()">{{ validation.email.errorMessage() }}</p>
+      <%= user.text_field :email,
+        "ng-model" => "model.email",
+        "ng-blur" => "validation.email()",
+        :class => "form-control" %>
+      <p class="help-block text-error" ng-show="error.email">{{ error.email }}</p>
 		</div>
 		
-		<div class="form-group" ng-class="{ 'has-error': !validation.password.isValid() }">
+		<div class="form-group" ng-class="{ 'has-error': error.password }">
 			<%= user.label :password %>
-			<%= user.password_field :password, "ng-model" => "model.password", :class => "form-control" %>
-      <p class="help-block text-error" ng-show="!validation.password.isValid()">{{ validation.password.errorMessage() }}</p>
+      <%= user.password_field :password,
+        "ng-model" => "model.password",
+        "ng-blur" => "validation.password()",
+        :class => "form-control" %>
+      <p class="help-block text-error" ng-show="error.password">{{ error.password }}</p>
 		</div>
 		
-		<div class="form-group" ng-class="{ 'has-error': !validation.password_confirmation.isValid() }">
+		<div class="form-group" ng-class="{ 'has-error': error.password_confirmation }">
 			<%= user.label :password_confirmation %>
-      <%= user.password_field :password_confirmation, "ng-model" => "model.password_confirmation", :class => "form-control" %>
-      <p class="help-block text-error" ng-show="!validation.password_confirmation.isValid()">{{ validation.password_confirmation.errorMessage() }}</p>
+      <%= user.password_field :password_confirmation,
+        "ng-model" => "model.password_confirmation",
+        "ng-blur" => "validation.password_confirmation()",
+        :class => "form-control" %>
+      <p class="help-block text-error" ng-show="error.password_confirmation">{{ error.password_confirmation }}</p>
 		</div>
 		
 	<% end %>
