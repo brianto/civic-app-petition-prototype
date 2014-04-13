@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.3'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'sqlite3', group: :development
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -62,3 +62,9 @@ gem 'will_paginate'
 
 # Styling support
 gem 'will_paginate-bootstrap'
+
+# PG for heroku
+gem 'pg', group: :production
+
+# Antoher gem for heroku
+gem 'rails_12factor'
