@@ -65,3 +65,6 @@ gem 'will_paginate-bootstrap'
 
 # PG for heroku
 gem 'pg', group: :production
+
+# Antoher gem for heroku
+gem 'rails_12factor'
