@@ -68,7 +68,7 @@
 <%= will_paginate @signatures, renderer: BootstrapPagination::Rails, :previous_label => "&laquo;", :next_label => "&raquo;"%>
 </div>
 
-<% if !@reported %>
+<% if @reportable %>
 	<a class="pull-right btn btn-danger" id="report_petition" role="button">Report Petition</a>
 <% end %>
 
