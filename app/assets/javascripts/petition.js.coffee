@@ -42,20 +42,27 @@ civic.controller "NewPetitionController", ($scope) ->
     title: ""
     statement: ""
 
+  $scope.error =
+    title: ""
+    statement: ""
+
+  # TODO this is copy paste from resident.js.coffee
+  verify = (key, check, message) ->
+    $scope.error[key] = if check then null else message
+    check
+
   $scope.validation =
-    allValid: allValidFn this
+    allValid: ->
+      not _.chain($scope.model)
+      .map _.isEmpty
+      .any()
+      .value()
 
-    title:
-      isValid: ->
-        not _.isEmpty $scope.model.title
-      errorMessage: ->
-        "Title cannot be empty"
+    title: ->
+      verify 'title', not _.isEmpty($scope.model.title), "title cannot be empty"
 
-    statement:
-      isValid: ->
-        not _.isEmpty $scope.model.statement
-      errorMessage: ->
-        "Statement cannot be empty"
+    statement: ->
+      verify 'statement', not _.isEmpty($scope.model.statement), "statement cannot be empty"
 
 civic.controller "SearchController", ($scope) ->
   SEARCH_URL = _.template "/petitions/find/<%= query %>"
