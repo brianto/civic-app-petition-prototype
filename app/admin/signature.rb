@@ -15,5 +15,20 @@ ActiveAdmin.register Signature do
   # end
 
   menu :parent => "Users"
-  
+
+  controller do
+    def create
+
+      petition = Petition.find_by_id(params[:signature][:petition_id])
+      resident = Resident.find_by_id(params[:signature][:resident_id])
+
+      @signature = Signature.new(:petition => petition, :resident => resident)
+      if @signature
+        @signature.save!
+      end
+
+      redirect_to admin_signatures_url
+    end
+  end
+
 end
