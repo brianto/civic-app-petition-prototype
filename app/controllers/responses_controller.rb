@@ -8,15 +8,14 @@ class ResponsesController < ApplicationController
   
   def create
     @response = Response.new response_params
-    
-    begin
-      @response.petition = Petition.find(params[:petition_id])
-      @response.politician = current_user.role
-      @response.save
-      
+    @response.petition = Petition.find(params[:petition_id])
+    @response.politician = current_user.role
+
+    if @response.save
       redirect_to polymorphic_path current_user.role
-    rescue
-      redirect_to new_petition_response @response
+    else
+      flash[:error] = "Error submitting petition, check your statement"
+      redirect_to  new_petition_response_path Petition.find(params[:petition_id])
     end
   end
   

@@ -8,18 +8,18 @@
   <%= csrf_meta_tags %>
 </head>
 <body ng-app="civic">
-  <% if flash[:error] %>
-  	<div class="alert alert-danger fade in">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-      Invalid Email or Password. Please check and try again.
-    </div>
-  <% end %>
   
   <%= render :partial => "partials/navigation" %>
   
   <%= content_for :top %>
   
   <div class="container">
+    <% if flash[:error] %>
+        <div class="alert alert-danger fade in">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+          <%= flash[:error] %>
+        </div>
+    <% end %>
   	<%= yield %>
   </div>
   

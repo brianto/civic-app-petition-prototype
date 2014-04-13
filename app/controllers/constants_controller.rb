@@ -3,7 +3,7 @@ class ConstantsController < ApplicationController
   # TODO Make sure it comes from the admin dashboard
   def update
     @constants.update constant_params
-    #render :nothing => true
+
     redirect_to admin_constants_url 
   end
   
