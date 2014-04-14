@@ -1,66 +1,71 @@
+roles = Hash.new
+petitions = Hash.new
 
-# Create the basic developer profiles
+# Create named users
+roles[:andres] = Resident.create :name => "Andres Ruiz"
+roles[:andres] = Resident.create :name => "Andrew Filipski"
+roles[:brian]  = Politician.create :name => "Brian To"
 
-# Build the Roles
-andres = Resident.create :name => "Andres Ruiz"
-andrew = Resident.create :name => "Andrew Filipski"
-brian = Politician.create :name => "Brian To"
-
-# Build the users
 User.create \
   :email => "andres@andres.com",
   :password => "Andres1",
   :password_confirmation => "Andres1",
-  :role => andres
+  :role => roles[:andres]
 
 User.create \
   :email => "andrew@andrew.com",
   :password => "Andrew1",
   :password_confirmation => "Andrew1",
-  :role => andrew
+  :role => roles[:andrew]
 
 User.create \
   :email => "brian@brian.com",
   :password => "Brian1",
   :password_confirmation => "Brian1",
-  :role => brian
+  :role => roles[:brian]
 
-petition_list = []
-# Build the signatures
-(1..20).each do |number|
-  signer = nil
-  if(number % 2 == 0)
-    signer = andres
-  else
-    signer = andrew
-  end
+# Create zombie users
+zombie_residents = 1.upto(DEFAULT_GOAL_THRESHOLD).map do |n|
+  resident = Resident.create :name => "User ##{n}"
 
-
-  petition = Petition.create \
-    :title => "Petition " << number.to_s,
-    :statement => "Lorem ipsum dolor sit amet, vide "\
-    "intellegam an sea, ut postea quaeque duo. Nostrud"\
-    " temporibus ei vix, mea ut tibique theophrastus.",
-    :resident => signer
-
-  petition_list << petition
-end
-
-# Build 40 random users for signing petitions
-
-(1..40).each do |number|
-  user = Resident.create :name => "User " << number.to_s
   User.create \
-  :email => "user" << number.to_s << "@user.com",
-  :password => "Password1",
-  :password_confirmation => "Password1",
-  :role => user
+    :email => "user#{n}@user.com",
+    :password => "Password1",
+    :password_confirmation => "Password1",
+    :role => resident
 
-  petition_list.each do |petition|
-    Signature.create \
-      :petition => petition,
-      :resident => user
-  end
-
+  resident
 end
 
+# Create petition cases
+petitions[:goal_reached] = Petition.create \
+  :title => "Who let the dogs out?",
+  :statement => "goal threshold reached",
+  :resident => roles[:andres]
+
+zombie_residents.each do |resident|
+  Signature.create \
+    :petition => petitions[:goal_reached],
+    :resident => resident
+end
+
+petitions[:one_signature] = Petition.create \
+  :title => "Lonely nights",
+  :statement => "one signature",
+  :resident => roles[:andres]
+
+petitions[:responded] = Petition.create \
+  :title => "VIP, they're calling me tonight",
+  :statement => "has politician response",
+  :resident => roles[:andres]
+
+zombie_residents.each do |resident|
+  Signature.create \
+    :petition => petitions[:responded],
+    :resident => resident
+end
+
+Response.create \
+  :petition => petitions[:responded],
+  :politician => roles[:brian],
+  :statement => "C.C. Catch 4ever"
