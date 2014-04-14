@@ -75,7 +75,7 @@ class PetitionsController < ApplicationController
       .inject(Array.new) do |memo, petition|
         memo + [{
           :title => petition.title,
-          :statement => petition.statement,
+          :statement => @markdown.render(petition.statement), #Render the html
           :url => petition_path(petition)
         }]
       end

@@ -15,6 +15,8 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require angular
+//= require angular-sanitize
+//= require angular-truncate
 //= require jquery.timer
 //
 //= require civic

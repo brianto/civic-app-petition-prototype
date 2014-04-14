@@ -67,6 +67,9 @@ civic.controller "NewPetitionController", ($scope) ->
 civic.controller "SearchController", ($scope) ->
   SEARCH_URL = _.template "/petitions/find/<%= query %>"
 
+  $scope.deliberatelyTrustDangerousSnippet = (data)->
+    $sce.trustAsHtml(data)
+
   $scope.model =
     query: ""
     results: []
@@ -83,3 +86,14 @@ civic.controller "SearchController", ($scope) ->
       .done (results) ->
         $scope.$apply ->
           $scope.model.results = results
+        $scope.goToResults = (event)->
+          target = $(event.currentTarget)
+          console.log("Block")
+          console.log(target.text())
+          link = target.find("a")
+          console.log("Link")
+          console.log(link.text())
+          url = link.attr("href")
+          document.location = url
+
+

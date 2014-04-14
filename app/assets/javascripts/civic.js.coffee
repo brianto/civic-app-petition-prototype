@@ -1,1 +1,1 @@
-window.civic = angular.module "civic", []
+window.civic = angular.module "civic", ['ngSanitize', 'truncate']
