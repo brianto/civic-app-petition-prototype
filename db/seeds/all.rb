@@ -6,9 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+DEFAULT_GOAL_THRESHOLD = 10
+
 constant = Constants.create \
   :site_title => "Everyday City People",
   :site_description => "pending description",
-  :goal => 10,
+  :goal => DEFAULT_GOAL_THRESHOLD,
   :resident_intro => "Resident Intro"
 
