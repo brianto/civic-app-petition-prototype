@@ -74,6 +74,12 @@ civic.controller "SearchController", ($scope) ->
     query: ""
     results: []
 
+  $scope.goToResults = (event)->
+    target = $(event.currentTarget)
+    link = target.find("a")
+    url = link.attr("href")
+    document.location = url
+    
   $scope.handlers =
     search: ->
       if _.isEmpty $scope.model.query
@@ -86,14 +92,5 @@ civic.controller "SearchController", ($scope) ->
       .done (results) ->
         $scope.$apply ->
           $scope.model.results = results
-        $scope.goToResults = (event)->
-          target = $(event.currentTarget)
-          console.log("Block")
-          console.log(target.text())
-          link = target.find("a")
-          console.log("Link")
-          console.log(link.text())
-          url = link.attr("href")
-          document.location = url
 
 
