@@ -51,7 +51,7 @@ ActiveAdmin.register User do
     column :id, :sortable => :id do |user|
       link_to(user.id.to_s, admin_user_path(user))
     end
-    column "Name" do |user|
+    column "Name", :sortable => :name do |user|
       user.role.name # Get the users name
     end
     column :email
