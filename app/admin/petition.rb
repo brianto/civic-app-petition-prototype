@@ -1,6 +1,4 @@
 ActiveAdmin.register Petition do
-
-  
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -13,7 +11,14 @@ ActiveAdmin.register Petition do
   #  permitted << :other if resource.something?
   #  permitted
   # end
-  
+
+  markdown = Redcarpet::Markdown.new(
+    Redcarpet::Render::HTML.new(prettify: true, hard_wrap: true),
+    tables: true,
+    autolink: true,
+    quote: true,
+    footnotes: true)
+
   permit_params :title, :statement, :goal, :resident
   controller do
     def create
@@ -51,8 +56,7 @@ ActiveAdmin.register Petition do
       row :id
       row :title
       row :statement do
-        #raw @markdown.render(petition.statement) #Render the markdown with the same renderer
-        petition.statement
+        raw markdown.render petition.statement
       end
       row :resident do
         link_to(petition.resident.name, admin_user_url(petition.resident.user))
