@@ -1,11 +1,10 @@
-<div class="row" style="padding-top: 2em">
+<div class="row" style="padding-top: 2em" ng-controller="NewPetitionController">
   <div class="col-md-8" style="padding-top: 4em">
     <%= form_for @petition,
       :html => {
-      "ng-controller" => "NewPetitionController",
-      :role => "form",
-      :class => "form-horizontal single_form"
-    } do |p| %>
+        :role => "form",
+        :class => "form-horizontal single_form"
+      } do |p| %>
 
       <div class="form-group" ng-class="{ 'has-error': error.title }">
         <%= p.label :title, :class=> "col-sm-2 control-label" %>
@@ -24,6 +23,7 @@
         <div class="col-sm-8">
           <%= p.text_area :statement,
             "ng-model" => "model.statement",
+            "ng-change" => "handlers.repreview()",
             "ng-blur" => "validation.statement()",
             :class => "form-control",
             :placeholder => "Mission Statement",
@@ -50,8 +50,8 @@
 
     <hr/>
 
-    <div id="preview_pane">
-
+    <div id="preview-pane"
+      ng-bind-html="model.preview">
     </div>
   </div>
 </div>

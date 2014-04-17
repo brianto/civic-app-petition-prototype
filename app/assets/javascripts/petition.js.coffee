@@ -8,6 +8,7 @@ $(document).ready ->
       type: "POST"
     .done ->
       document.location = document.URL # reload, the ugly way
+
   $("#report_petition").on "click", ->
     $.ajax
       url: window.location + "/report"
@@ -15,32 +16,11 @@ $(document).ready ->
     .done ->
       document.location = document.URL # reload, the ugly way
 
-  # Live preview things
-  update =  ->
-    text = $("#petition_statement").val()
-    $.ajax
-      url: "/preview"
-      type: 'POST'
-      data: {statement: text}
-      success: (data) ->
-        $("#preview_pane").html(data)
-        console.log "Got called"
-        console.log data
-
-  timer = $.timer(update, 3000, false) #Update the page every 3s
-
-  $("#petition_statement").on "focus", ->
-    timer.play(true) # Start the live updater every 3s
-
-  $("#petition_statement").on "blur", ->
-    timer.pause() #Stop the updating
-    timer.once()  #Call it one last time
-
-
-civic.controller "NewPetitionController", ($scope) ->
+civic.controller "NewPetitionController", ($scope, $sce) ->
   $scope.model =
     title: ""
     statement: ""
+    preview: ""
 
   $scope.error =
     title: ""
@@ -51,6 +31,18 @@ civic.controller "NewPetitionController", ($scope) ->
     $scope.error[key] = if check then null else message
     check
 
+  $scope.handlers =
+    repreview: _.debounce ->
+      $.ajax
+        url: "/preview"
+        type: "POST"
+        data:
+          statement: $scope.model.statement
+        success: (data) ->
+          $scope.$apply ->
+            $scope.model.preview = $sce.trustAsHtml data
+    , 1000 # debounce rate: max 1 call every 1 second
+
   $scope.validation =
     allValid: ->
       not _.chain($scope.model)
@@ -59,10 +51,10 @@ civic.controller "NewPetitionController", ($scope) ->
       .value()
 
     title: ->
-      verify 'title', not _.isEmpty($scope.model.title), "title cannot be empty"
+      verify "title", not _.isEmpty($scope.model.title), "title cannot be empty"
 
     statement: ->
-      verify 'statement', not _.isEmpty($scope.model.statement), "statement cannot be empty"
+      verify "statement", not _.isEmpty($scope.model.statement), "statement cannot be empty"
 
 civic.controller "SearchController", ($scope) ->
   SEARCH_URL = _.template "/petitions/find/<%= query %>"
