@@ -21,13 +21,16 @@
 	</div>
 	
 
-  <div ng-repeat="result in model.results" class="panel panel-default search-result" ng-click="goToResults($event)">
+  <div
+    class="panel panel-default search-result"
+    ng-repeat="result in model.results"
+    ng-click="handlers.navigateTo(result)">
+
     <div class="panel-heading">
-        <a id="result_{{id}}" class="panel-title" href="{{ result.url }}">{{ result.title }}</a>
+        <a class="panel-title" href="{{ result.url }}">{{ result.title }}</a>
     </div>
     <div class="panel-body">
         <div ng-bind-html="result.statement | characters:100"></div>
     </div>
   </div>
-
 </form>

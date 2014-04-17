@@ -66,13 +66,10 @@ civic.controller "SearchController", ($scope) ->
     query: ""
     results: []
 
-  $scope.goToResults = (event)->
-    target = $(event.currentTarget)
-    link = target.find("a")
-    url = link.attr("href")
-    document.location = url
-    
   $scope.handlers =
+    navigateTo: (result) ->
+      document.location = result.url
+
     search: ->
       if _.isEmpty $scope.model.query
         $scope.model.results = []
