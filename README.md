@@ -15,12 +15,12 @@ http://everydaycitypeople.herokuapp.com/
 Development Information
 =======================
 
-ActiveAdmin Dashboard: URL/admin
-Login: admin@admin.com
-Pass : Administrator1
+ActiveAdmin Dashboard: URL/admin  
+Login: admin@admin.com  
+Pass : Administrator1  
 
-User Logins
-
+User Logins  
+  
 SEE db/seeds/development.rb
 
 How to Deploy using Heroku
