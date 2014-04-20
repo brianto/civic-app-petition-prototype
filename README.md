@@ -26,6 +26,10 @@ SEE db/seeds/development.rb
 How to Deploy using Heroku
 ==========================
 
+1. Clone this repository `git clone git@github.com:brianto/civic-app-petition-prototype.git`
+2. Create a Heroku App `heroku apps:create <appname>`
+3. Add the Heroku remote branch `git remote add heroku git@heroku.com:<appname>.git`
+4. Push master to Heroku `git push heroku master`
 
 Administration Guide
 ====================
