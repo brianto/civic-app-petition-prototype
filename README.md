@@ -23,3 +23,19 @@ User Logins
 
 SEE db/seeds/development.rb
 
+How to Deploy using Heroku
+==========================
+
+
+Administration Guide
+====================
+
+ActiveAdmin Dashboard: URL/admin
+Login: admin@admin.com
+Pass : Administrator1
+
+Known Issues
+============
+
+https://github.com/brianto/civic-app-petition-prototype/issues?state=open
+
