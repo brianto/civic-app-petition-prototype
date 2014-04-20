@@ -35,6 +35,8 @@ ActiveAdmin.register Petition do
       
       redirect_to admin_petitions_url
     end
+
+
   end
   
   index do

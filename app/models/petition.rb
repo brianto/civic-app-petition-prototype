@@ -1,8 +1,8 @@
 class Petition < ActiveRecord::Base
   belongs_to :resident
-  has_many :signatures
-  has_many :responses
-  has_many :reports
+  has_many :signatures, :dependent => :destroy
+  has_many :responses, :dependent => :destroy
+  has_many :reports, :dependent => :destroy
   
   before_create :setGoal
   after_create :signByOwner
