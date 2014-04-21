@@ -16,7 +16,7 @@ $(document).ready ->
     .done ->
       document.location = document.URL # reload, the ugly way
 
-civic.controller "NewPetitionController", ($scope, $sce) ->
+civic.controller "NewPetitionController", ["$scope", "$sce", ($scope, $sce) ->
   $scope.model =
     title: ""
     statement: ""
@@ -55,8 +55,9 @@ civic.controller "NewPetitionController", ($scope, $sce) ->
 
     statement: ->
       verify "statement", not _.isEmpty($scope.model.statement), "statement cannot be empty"
+  ]
 
-civic.controller "SearchController", ($scope) ->
+civic.controller "SearchController", ["$scope", ($scope) ->
   SEARCH_URL = _.template "/petitions/find/<%= query %>"
 
   $scope.deliberatelyTrustDangerousSnippet = (data)->
@@ -83,3 +84,4 @@ civic.controller "SearchController", ($scope) ->
           $scope.model.results = results
 
 
+  ]
