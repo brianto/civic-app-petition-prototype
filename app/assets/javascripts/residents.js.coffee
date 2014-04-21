@@ -30,8 +30,8 @@ civic.controller "ResidentFormController", ["$scope", ($scope) ->
       .any()
       .value()
 
-      valid = _.chain($scope.model)
-      .map _.isEmpty
+      valid = _.chain(passwordValidators)
+      .map (validatorFn) -> validatorFn()
       .all()
       .value()
 
