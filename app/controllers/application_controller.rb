@@ -7,11 +7,12 @@ class ApplicationController < ActionController::Base
   # filter_parameter_logging :password
   
   before_action do
-    @constants = Constants.first
+    @constants = Constants.first # Is there a better way to cache this?
     @current_user = current_user
     # Build the markdown engine
     @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(prettify: true, hard_wrap: true),
                                         tables: true, autolink: true, quote: true, footnotes: true)
+    @version = Rails.configuration.version
   end
   
   helper_method :current_user
