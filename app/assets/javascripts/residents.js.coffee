@@ -1,4 +1,4 @@
-civic.controller "ResidentFormController", ($scope) ->
+civic.controller "ResidentFormController", ["$scope", ($scope) ->
   MINIMUM_PASSWORD_LENGTH = 4
   
   $scope.model =
@@ -65,3 +65,4 @@ civic.controller "ResidentFormController", ($scope) ->
     password_confirmation: ->
       model = $scope.model
       verify "password_confirmation", model.password_confirmation == model.password, "passwords do not match"
+  ]
