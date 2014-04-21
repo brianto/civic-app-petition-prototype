@@ -23,12 +23,9 @@ CivicAppPetitionPrototype::Application.configure do
   config.serve_static_assets = false
 
   # Compress JavaScripts and CSS.
-  config.assets.js_compressor = Uglifier.new(mangle: false)
+  config.assets.js_compressor = :uglifier
   # config.assets.css_compressor = :sass
 
-  config.assets.enabled = true
-  config.assets.initialize_on_precompile = false
-  
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
 
