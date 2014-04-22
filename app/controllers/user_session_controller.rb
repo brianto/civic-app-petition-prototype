@@ -7,8 +7,6 @@ class UserSessionController < ApplicationController
     @user_session = UserSession.new user_session_params
   
     if @user_session.save
-      # Clear the flash error, since it doesn't seem to clear on it's own
-      flash[:error] = nil
       redirect_to root_path
     else
       flash[:error] = "Invalid Email or Password. Please check and try again."

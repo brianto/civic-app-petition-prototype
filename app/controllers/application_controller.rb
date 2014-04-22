@@ -13,6 +13,9 @@ class ApplicationController < ActionController::Base
     @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(prettify: true, hard_wrap: true),
                                         tables: true, autolink: true, quote: true, footnotes: true)
     @version = Rails.configuration.version
+
+    # Clear the flash error, since it doesn't seem to clear on it's own
+    flash[:error] = nil
   end
   
   helper_method :current_user
