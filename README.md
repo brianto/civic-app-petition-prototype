@@ -34,9 +34,7 @@ How to Deploy using Heroku
 Administration Guide
 ====================
 
-ActiveAdmin Dashboard: URL/admin
-Login: admin@admin.com
-Pass : Administrator1
+See our [wiki](https://github.com/brianto/civic-app-petition-prototype/wiki/Admin-Guide)
 
 Known Issues
 ============
