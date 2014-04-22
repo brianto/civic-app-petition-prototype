@@ -11,7 +11,7 @@ DEFAULT_GOAL_THRESHOLD = 10
 constant = Constants.create \
   :site_title => "Everyday City People",
   :site_description => <<EOF,
-Everyday City People aims to provide a platform"
+Everyday City People aims to provide a platform
 for local change, where residents can join voices and better our community.
 EOF
   :goal => DEFAULT_GOAL_THRESHOLD,
