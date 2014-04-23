@@ -66,8 +66,9 @@ ActiveAdmin.register Petition do
       row :statement do
         raw markdown.render petition.statement
       end
-      row :resident do
-        link_to(petition.resident.name, admin_user_url(petition.resident.user))
+      row :resident do |petition|
+        resident = Resident.find_by_id(petition.resident_id)
+        link_to(petition.resident.name, admin_user_path(resident.user.id))
       end
       row "Signatures" do
         link_to(petition.signatures.count.to_s, :controller => "signatures", 
