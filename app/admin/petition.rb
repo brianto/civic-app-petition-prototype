@@ -1,3 +1,5 @@
+require 'redcarpet/render_strip'
+
 ActiveAdmin.register Petition do
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -12,13 +14,15 @@ ActiveAdmin.register Petition do
   #  permitted
   # end
 
-  markdown = Redcarpet::Markdown.new(
+  markdown = Redcarpet::Markdown.new \
     Redcarpet::Render::HTML.new(prettify: true, hard_wrap: true),
     tables: true,
     autolink: true,
     quote: true,
-    footnotes: true)
-
+    footnotes: true
+    
+  plaintext = Redcarpet::Markdown.new Redcarpet::Render::StripDown.new
+  
   permit_params :title, :statement, :goal, :resident
   controller do
     def create
@@ -45,7 +49,9 @@ ActiveAdmin.register Petition do
       link_to(petition.id.to_s, admin_petition_path(petition))
     end
     column :title
-    column :statement
+    column :statement do |petition|
+      raw plaintext.render petition.statement
+    end
     column :resident, :sortable => 'resident_id'
     column :goal
     column :created_at
