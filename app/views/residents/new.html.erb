@@ -8,7 +8,7 @@
 		<%= resident.label :name %>
     <%= resident.text_field :name,
       "ng-model" => "model.name",
-      "ng-blur" => "validation.name()",
+      "ng-blur" => "updateError('name')",
       :class => "form-control" %>
     <p class="help-block text-error" ng-show="error.name">{{ error.name }}</p>
 	</div>
@@ -18,7 +18,7 @@
 			<%= user.label :email %>
       <%= user.text_field :email,
         "ng-model" => "model.email",
-        "ng-blur" => "validation.email()",
+        "ng-blur" => "updateError('email')",
         :class => "form-control" %>
       <p class="help-block text-error" ng-show="error.email">{{ error.email }}</p>
 		</div>
@@ -27,7 +27,7 @@
 			<%= user.label :password %>
       <%= user.password_field :password,
         "ng-model" => "model.password",
-        "ng-blur" => "validation.password()",
+        "ng-blur" => "updateError('password')",
         :class => "form-control" %>
       <p class="help-block text-error" ng-show="error.password">{{ error.password }}</p>
 		</div>
@@ -36,12 +36,12 @@
 			<%= user.label :password_confirmation %>
       <%= user.password_field :password_confirmation,
         "ng-model" => "model.password_confirmation",
-        "ng-blur" => "validation.password_confirmation()",
+        "ng-blur" => "updateError('password_confirmation')",
         :class => "form-control" %>
       <p class="help-block text-error" ng-show="error.password_confirmation">{{ error.password_confirmation }}</p>
 		</div>
 		
 	<% end %>
 	
-	<%= submit_tag "Sign Up", "ng-disabled" => "!validation.allValid()", :class => "btn btn-success" %>
+	<%= submit_tag "Sign Up", "ng-disabled" => "!allValid()", :class => "btn btn-success" %>
 <% end %>

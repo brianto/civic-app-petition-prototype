@@ -12,57 +12,73 @@ civic.controller "ResidentFormController", ["$scope", ($scope) ->
     name: ""
     password: ""
     password_confirmation: ""
+    
+  makeValidator = (checkFn, error) ->
+    ->
+      valid: checkFn()
+      error: error
 
   passwordValidators =
-    uppercase: -> !!$scope.model.password.match /[A-Z]/
-    lowercase: -> !!$scope.model.password.match /[a-z]/
-    numeric:   -> !!$scope.model.password.match /[0-9]/
-    length:    -> $scope.model.password.length > MINIMUM_PASSWORD_LENGTH
+    uppercase: makeValidator ->
+      !!$scope.model.password.match /[A-Z]/
+    , "no upper case letter"
+      
+    lowercase: makeValidator ->
+      !!$scope.model.password.match /[a-z]/
+    , "no lower case letter"
+      
+    numeric: makeValidator ->
+      !!$scope.model.password.match /[0-9]/
+    , "no numeric digit"
+      
+    length: makeValidator ->
+      $scope.model.password.length > MINIMUM_PASSWORD_LENGTH
+    , "not long enough"
+      
+  $scope.updateError = (key) ->
+    validator = $scope.validation[key]()
+    $scope.error[key] = if validator.valid then "" else validator.error
 
-  verify = (key, check, message) ->
-    $scope.error[key] = if check then null else message
-    check
+  $scope.allValid = ->
+    present = not _.chain($scope.model)
+    .map _.isEmpty
+    .any()
+    .value()
+
+    valid = _.chain($scope.validation)
+    .map (validatorFn, validatorName) ->
+      validatorFn().valid
+    .all()
+    .value()
+
+    present and valid
 
   $scope.validation =
-    allValid: ->
-      present = not _.chain($scope.model)
-      .map _.isEmpty
-      .any()
-      .value()
+    name: makeValidator ->
+      !$scope.model.name.match(/^\s*$/)
+    , "name cannot be empty"
 
-      valid = _.chain(passwordValidators)
-      .map (validatorFn) -> validatorFn()
-      .all()
-      .value()
-
-      present and valid
-
-    name: -> verify "name", !$scope.model.name.match(/^\s*$/), "name cannot be empty"
-    email: -> verify "email", $scope.model.email.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}/), "email is not valid"
+    email: makeValidator ->
+      !!$scope.model.email.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}/)
+    , "email is not valid"
+      
     password: ->
-      valid = _.chain(passwordValidators)
-        .map (validatorFn, validatorName) ->
-          console.log validatorName
-          validatorFn()
-        .all()
-        .value()
+      validator = _.reduce passwordValidators, (memo, validatorFn, validatorName) ->
+        v = validatorFn()
+        
+        memo.valid = memo.valid and v.valid
+        memo.error.push(v.error) if not v.valid
+         
+        memo
+      , { valid: true, error: [] }
           
-      errors = []
+      validator.error = _.template "password has the following errors: <%= errors %>",
+        errors: validator.error.join ", "
       
-      errors.push "no upper case letter" if !passwordValidators.uppercase()
-      errors.push "no lower case letter" if !passwordValidators.lowercase()
-      errors.push "no numeric digit" if !passwordValidators.numeric()
-      errors.push "not long enough" if !passwordValidators.length()
+      validator
       
-      if _.isEmpty errors
-        $scope.error.password = ""
-      else
-        $scope.error.password = _.template "password has the following errors: <%= errors %>",
-          errors: errors.join ", "
-
-      valid
-          
-    password_confirmation: ->
+    password_confirmation: makeValidator ->
       model = $scope.model
-      verify "password_confirmation", model.password_confirmation == model.password, "passwords do not match"
+      model.password_confirmation == model.password
+    , "passwords do not match"
   ]
