@@ -21,7 +21,7 @@ Pass : Administrator1
 
 User Logins  
   
-SEE db/seeds/development.rb
+See [seeds/development.rb](https://github.com/brianto/civic-app-petition-prototype/blob/master/db/seeds/development.rb)
 
 How to Deploy using Heroku
 ==========================
