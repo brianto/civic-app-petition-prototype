@@ -15,8 +15,8 @@ class PoliticiansController < ApplicationController
       
       redirect_to politician_path @politician
     rescue Exception => e
-      raise e.to_s
-      redirect_to new_resident_path
+      flash[:error] = e.to_s
+      render :action => :new
     end
   end
   

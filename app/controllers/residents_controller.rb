@@ -21,8 +21,8 @@ class ResidentsController < ApplicationController
       
       redirect_to resident_path @resident
     rescue Exception => e
-      raise e.to_s
-      redirect_to new_resident_path
+      flash[:error] = e.to_s
+      render :action => :new
     end
   end
   
